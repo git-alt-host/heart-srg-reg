@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Operation History Profile - 2025</title>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="form-container">
+        <div class="header">
+            <img src="./media/Q icon.png" class="logo" alt="Left Logo">
+            <div class="title-container">
+                <h1>Heart Operation - 2025</h1>
+                <div class="title-divider"></div>
+                <h2>Social History of the Patient</h2>
+            </div>
+            <div class="photo-box" id="photoBox">
+                <div class="placeholder">Click to upload<br>Patient Photo</div>
+                <img id="patientPhoto" src="" alt="Patient Photo">
+                <input type="file" id="photoUpload" accept="image/*">
+            </div>
+        </div>
+        
+        <form>
+            <div class="form-row title-row">
+                <div class="form-group case-id-group">
+                    <label for="caseId" class="no-break">Case ID:</label>
+                    <input type="text" id="caseId" name="caseId" value="QCHO-2025-">
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>1. Name of the patient:</label>
+                    <div class="patient-name-container">
+                        <input type="text" id="patientName" name="patientName">
+                        <div class="dob-container">
+                            <span>DOB:</span>
+                            <input type="date" id="dob" name="dob">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="fatherName">2. Father's Name:</label>
+                    <input type="text" id="fatherName" name="fatherName">
+                </div>
+                
+                <div class="form-group">
+                    <label for="motherName">3. Mother's Name:</label>
+                    <input type="text" id="motherName" name="motherName">
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="fatherProfession">4. Father's Profession:</label>
+                    <input type="text" id="fatherProfession" name="fatherProfession">
+                </div>
+                
+                <div class="form-group">
+                    <label for="motherProfession">5. Mother's Profession:</label>
+                    <input type="text" id="motherProfession" name="motherProfession">
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="monthlyIncome">6. Monthly Family Income:</label>
+                    <input type="text" id="monthlyIncome" name="monthlyIncome">
+                </div>
+
+                <div class="form-group">
+                    <label for="familyMembers">7. Family Members:</label>
+                    <input type="number" id="familyMembers" name="familyMembers" min="1" max="10" value="3">
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group full-width">
+                    <table id="familyMembersTable">
+                        <thead>
+                            <tr>
+                                <th>SL</th>
+                                <th>Name</th>
+                                <th>Age</th>
+                                <th>M Status</th>
+                                <th>Institute</th>
+                                <th>Class</th>
+                                <th>Profession</th>
+                                <th class="action-cell"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td><input type="text" class="no-border"></td>
+                                <td><input type="number" min="0" max="120" class="no-border age-input"></td>
+                                <td>
+                                    <select class="no-border">
+                                        <option value="">Select</option>
+                                        <option value="married">Married</option>
+                                        <option value="unmarried">Unmarried</option>
+                                    </select>
+                                </td>
+                                <td><input type="text" class="no-border"></td>
+                                <td><input type="number" min="1" max="12" class="no-border class-input"></td>
+                                <td><input type="text" class="no-border"></td>
+                                <td class="action-cell"><span class="remove-btn">✕</span></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td><input type="text" class="no-border"></td>
+                                <td><input type="number" min="0" max="120" class="no-border age-input"></td>
+                                <td>
+                                    <select class="no-border">
+                                        <option value="">Select</option>
+                                        <option value="married">Married</option>
+                                        <option value="unmarried">Unmarried</option>
+                                    </select>
+                                </td>
+                                <td><input type="text" class="no-border"></td>
+                                <td><input type="number" min="1" max="12" class="no-border class-input"></td>
+                                <td><input type="text" class="no-border"></td>
+                                <td class="action-cell"><span class="remove-btn">✕</span></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td><input type="text" class="no-border"></td>
+                                <td><input type="number" min="0" max="120" class="no-border age-input"></td>
+                                <td>
+                                    <select class="no-border">
+                                        <option value="">Select</option>
+                                        <option value="married">Married</option>
+                                        <option value="unmarried">Unmarried</option>
+                                    </select>
+                                </td>
+                                <td><input type="text" class="no-border"></td>
+                                <td><input type="number" min="1" max="12" class="no-border class-input"></td>
+                                <td><input type="text" class="no-border"></td>
+                                <td class="action-cell"><span class="remove-btn">✕</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <button type="button" class="add-row-btn" id="addRowBtn">Add Row</button>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group full-width">
+                    
+                    <div class="house-status-container">
+                        <label>8. House Status:</label>
+                        <div class="house-status-column left-column">
+                            <!-- Radio buttons -->
+                             
+                            <div class="radio-group">
+                                <div class="radio-option">
+                                    <input type="radio" id="own" name="houseStatus" value="OWN" checked>
+                                    <label for="own">Own</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" id="rent" name="houseStatus" value="RENT">
+                                    <label for="rent">Rent</label>
+                                </div>
+                            </div>
+                            
+                            <!-- Property table -->
+                            <table class="property-details">
+                                <tr>
+                                    <th>Properties</th>
+                                    <td><input type="text" class="table-input"></td>
+                                </tr>
+                                <tr>
+                                    <th>Land</th>
+                                    <td><input type="text" class="table-input"></td>
+                                </tr>
+                                <tr>
+                                    <th>House Size</th>
+                                    <td><input type="text" class="table-input"></td>
+                                </tr>
+                            </table>
+                        </div>
+                        
+                        <div class="house-status-column right-column">
+                            <!-- Type dropdown -->
+                            <div class="type-dropdown-container">
+                                <select id="buildingType">
+                                    <option value="" disabled selected>Type</option>
+                                    <option value="building">Building</option>
+                                    <option value="building">Half Building</option>
+                                    <option value="tinShade">Tin Shade</option>
+                                </select>
+                            </div>
+                            
+                            <!-- Checkboxes -->
+                            <div class="facility-checkboxes">
+                                <div class="checkbox-option">
+                                    <input type="checkbox" id="tubeWell">
+                                    <label for="tubeWell">Tube Well</label>
+                                </div>
+                                <div class="checkbox-option">
+                                    <input type="checkbox" id="latrine">
+                                    <label for="latrine">Latrine</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group full-width">
+                    <label>9. Present Address:</label>
+                    <div class="address-fields">
+                        <input type="text" placeholder="District">
+                        <input type="text" placeholder="Upozila">
+                        <input type="text" placeholder="Union">
+                        <input type="text" placeholder="Village">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group full-width">
+                    <label>10. Permanent Address:</label>
+                    <div class="address-fields">
+                        <input type="text" placeholder="District">
+                        <input type="text" placeholder="Upozila">
+                        <input type="text" placeholder="Union">
+                        <input type="text" placeholder="Village">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="email">12. Email Address:</label>
+                    <input type="email" id="email" name="email">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group full-width">
+                    <label>11. Contact Numbers:</label>
+                    <table class="contact-numbers-table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <select class="contact-relation">
+                                        <option value="self">Self</option>
+                                        <option value="family">Family Member</option>
+                                        <option value="relative">Relative</option>
+                                        <option value="neighbor">Neighbor</option>
+                                    </select>
+                                </th>
+                                <th>
+                                    <select class="contact-relation">
+                                        <option value="self">Self</option>
+                                        <option value="family">Family Member</option>
+                                        <option value="relative">Relative</option>
+                                        <option value="neighbor">Neighbor</option>
+                                    </select>
+                                </th>
+                                <th>
+                                    <select class="contact-relation">
+                                        <option value="self">Self</option>
+                                        <option value="family">Family Member</option>
+                                        <option value="relative">Relative</option>
+                                        <option value="neighbor">Neighbor</option>
+                                    </select>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input style="text-align: center;"  class="phone-input" type="tel" placeholder="Enter phone number" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required></td>
+                                <td><input style="text-align: center;"  class="phone-input" type="tel" placeholder="Enter phone number" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required></td>
+                                <td><input style="text-align: center;"  class="phone-input" type="tel" placeholder="Enter phone number" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </form>
+
+        <!-- Refresh and Save Button -->
+        <div class="action-buttons">
+            <button class="action-btn refresh-btn" id="refreshBtn">Refresh Form</button>
+            <button class="action-btn download-btn" id="downloadBtn">Download as JPEG</button>
+        </div>
+    </div>
+
+    <script>
+        // Photo Upload Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const photoBox = document.getElementById('photoBox');
+            const photoUpload = document.getElementById('photoUpload');
+            const patientPhoto = document.getElementById('patientPhoto');
+            
+            // Photo upload functionality
+            photoBox.addEventListener('click', function() {
+                photoUpload.click();
+            });
+            
+            photoUpload.addEventListener('change', function(e) {
+                if (e.target.files && e.target.files[0]) {
+                    const reader = new FileReader();
+                    
+                    reader.onload = function(event) {
+                        patientPhoto.src = event.target.result;
+                        photoBox.classList.add('has-image');
+                    }
+                    
+                    reader.readAsDataURL(e.target.files[0]);
+                }
+            });
+        });
+    
+        // Family Members Table Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const table = document.getElementById('familyMembersTable');
+            const tbody = table.querySelector('tbody');
+            const addRowBtn = document.getElementById('addRowBtn');
+            
+            addRowBtn.addEventListener('click', function() {
+                const rows = tbody.querySelectorAll('tr');
+                const newRow = document.createElement('tr');
+                const newRowNum = rows.length + 1;
+                
+                newRow.innerHTML = `
+                    <td>${newRowNum}</td>
+                    <td><input type="text" class="no-border"></td>
+                    <td><input type="number" min="0" max="120" class="no-border age-input"></td>
+                    <td>
+                        <select class="no-border">
+                            <option value="">Select</option>
+                            <option value="married">Married</option>
+                            <option value="unmarried">Unmarried</option>
+                        </select>
+                    </td>
+                    <td><input type="text" class="no-border"></td>
+                    <td><input type="number" min="1" max="12" class="no-border class-input"></td>
+                    <td><input type="text" class="no-border"></td>
+                    <td class="action-cell"><span class="remove-btn">✕</span></td>
+                `;
+                
+                tbody.appendChild(newRow);
+            });
+            
+            tbody.addEventListener('click', function(e) {
+                if (e.target.classList.contains('remove-btn')) {
+                    const row = e.target.closest('tr');
+                    row.remove();
+                    
+                    const rows = tbody.querySelectorAll('tr');
+                    rows.forEach((row, index) => {
+                        row.cells[0].textContent = index + 1;
+                    });
+                }
+            });
+        });
+    
+        // Refresh Form Function
+        document.getElementById('refreshBtn').addEventListener('click', function() {
+            if(confirm('Are you sure you want to refresh the form? All data will be lost.')) {
+                document.querySelector('form').reset();
+                // Clear photo
+                document.getElementById('patientPhoto').src = '';
+                document.getElementById('photoBox').classList.remove('has-image');
+                // Reset table to initial 3 rows
+                const tbody = document.querySelector('#familyMembersTable tbody');
+                tbody.innerHTML = `
+                    <tr>
+                        <td>1</td>
+                        <td><input type="text" class="no-border"></td>
+                        <td><input type="number" min="0" max="120" class="no-border age-input"></td>
+                        <td>
+                            <select class="no-border">
+                                <option value="">Select</option>
+                                <option value="married">Married</option>
+                                <option value="unmarried">Unmarried</option>
+                            </select>
+                        </td>
+                        <td><input type="text" class="no-border"></td>
+                        <td><input type="number" min="1" max="12" class="no-border class-input"></td>
+                        <td><input type="text" class="no-border"></td>
+                        <td class="action-cell"><span class="remove-btn">✕</span></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><input type="text" class="no-border"></td>
+                        <td><input type="number" min="0" max="120" class="no-border age-input"></td>
+                        <td>
+                            <select class="no-border">
+                                <option value="">Select</option>
+                                <option value="married">Married</option>
+                                <option value="unmarried">Unmarried</option>
+                            </select>
+                        </td>
+                        <td><input type="text" class="no-border"></td>
+                        <td><input type="number" min="1" max="12" class="no-border class-input"></td>
+                        <td><input type="text" class="no-border"></td>
+                        <td class="action-cell"><span class="remove-btn">✕</span></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td><input type="text" class="no-border"></td>
+                        <td><input type="number" min="0" max="120" class="no-border age-input"></td>
+                        <td>
+                            <select class="no-border">
+                                <option value="">Select</option>
+                                <option value="married">Married</option>
+                                <option value="unmarried">Unmarried</option>
+                            </select>
+                        </td>
+                        <td><input type="text" class="no-border"></td>
+                        <td><input type="number" min="1" max="12" class="no-border class-input"></td>
+                        <td><input type="text" class="no-border"></td>
+                        <td class="action-cell"><span class="remove-btn">✕</span></td>
+                    </tr>
+                `;
+            }
+        });
+        
+        document.getElementById('downloadBtn').addEventListener('click', async function() {
+            // Get form values
+            const caseId = document.getElementById('caseId').value;
+            const patientName = document.getElementById('patientName').value;
+            
+            // Validate inputs
+            if (!caseId || !patientName) {
+                alert('ERROR: Please complete Case ID and Patient Name fields');
+                return;
+            }
+
+            // Prepare filename on save
+            const caseNumber = caseId.split('-').pop() || '0000';
+            const filename = `${caseNumber}-${patientName.trim().replace(/\s+/g, '_')}-hp.JPEG`;
+
+            // Prepare the form container for save
+            const formContainer = document.querySelector('.form-container');
+            const originalStyles = {
+                position: formContainer.style.position,
+                overflow: formContainer.style.overflow,
+                zIndex: formContainer.style.zIndex
+            };
+            
+            // Style for form capture
+            formContainer.style.position = 'absolute';
+            formContainer.style.overflow = 'visible';
+            formContainer.style.zIndex = '9999';
+            
+            // Hide action buttons
+            const actionButtons = document.querySelector('.action-buttons');
+            actionButtons.style.display = 'none';
+
+            try {
+                // Capture with precise dimensions
+                const canvas = await html2canvas(formContainer, {
+                    scale: 2, // Double resolution for quality
+                    width: 794, // A4 width in pixels (210mm)
+                    height: formContainer.scrollHeight, // Dynamic height
+                    scrollX: 0,
+                    scrollY: 0,
+                    backgroundColor: '#ffffff',
+                    useCORS: true,
+                    allowTaint: true,
+                    logging: true,
+                    letterRendering: true
+                });
+
+                // Create download link
+                const link = document.createElement('a');
+                link.download = filename;
+                link.href = canvas.toDataURL('image/jpeg', 0.92); //problamatic
+                link.click();
+
+            } catch (error) {
+                console.error('Capture error:', error);
+                alert('Error generating document. Please try again. Error:', error);
+            } finally {
+                // Restore original styles
+                Object.assign(formContainer.style, originalStyles);
+                actionButtons.style.display = 'flex';
+            }
+        });
+
+        // cell no. formatting
+        document.querySelectorAll('input[type="tel"]').forEach(function (input) {
+            input.addEventListener('input', function () {
+                // Remove any non-digit characters
+                let cleaned = ('' + input.value).replace(/\D/g, '');
+
+                // Limit to 11 digits
+                if (cleaned.length >= 11) {
+                    cleaned = cleaned.slice(0, 11);
+                }
+
+                // Apply formatting (e.g., 123-4565-7890)
+                let match = cleaned.match(/^(\d{3})(\d{4})(\d{4})$/);
+                if (match) {
+                    input.value = match[1] + '-' + match[2] + '-' + match[3];
+                } else {
+                    // Apply partial formatting if not enough digits
+                    input.value = cleaned.replace(/(\d{3})(\d{0,4})?(\d{0,4})/, function (_, p1, p2, p3) {
+                        return p1 + (p2 ? '-' + p2 : '') + (p3 ? '-' + p3 : '');
+                    });
+                }
+            });
+        });
+    
+    </script>
+</body>
+</html>
