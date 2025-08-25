@@ -5,144 +5,314 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Heart Operation History Profile - 2025</title>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 
 <body>
     <div class="form-container">
         <div class="header">
-            <img src="./media/Q icon.png" class="logo" alt="Left Logo">
+            <img src="./media/QC BANGLADESH-2.png" class="logo" alt="Left Logo">
             <div class="title-container">
                 <h1>Heart Operation - 2025</h1>
-                <div class="title-divider"></div>
                 <h2>Social History of the Patient</h2>
+                <!-- <div class="title-divider"></div> -->
+
+                <div class="form-row title-row">
+                    <span class="form-group">
+                        <label for="applicationId" class="form-label">Application ID:</label>
+                        <input type="text" id="applicationId" name="applicationId" value="QCHOA-2025-" class="form-input">
+                    </span>
+                    <span class="form-group">
+                        <label for="caseId" class="form-label">Case ID:</label>
+                        <input type="text" id="caseId" name="caseId" value="QCHO-2025-" class="form-input">
+                    </span>
+                </div>
             </div>
-            <div class="photo-box" id="photoBox">
-                <div class="placeholder">Click to upload<br>Patient Photo</div>
-                <img id="patientPhoto" src="" alt="Patient Photo">
+
+            <div class="heart-photo-box" id="heartPhotoBox">
+                <div class="heart-frame"></div>
+                <div class="photo-placeholder">upload image</div>
+                <img id="passportPhoto" class="passport-photo" src="" alt="Passport Photo">
                 <input type="file" id="photoUpload" accept="image/*">
             </div>
         </div>
         
         <form>
-            <div class="form-row title-row">
-                <div class="form-group case-id-group">
-                    <label for="caseId" class="no-break">Case ID:</label>
-                    <input type="text" id="caseId" name="caseId" value="QCHO-2025-">
-                </div>
-            </div>
-            
             <div class="form-row">
                 <div class="form-group">
-                    <label>1. Name of the patient:</label>
+                    <label class="form-label">1. Name of the patient:</label>
                     <div class="patient-name-container">
-                        <input type="text" id="patientName" name="patientName">
+                        <input type="text" id="patientName" name="patientName" class="form-input">
+
                         <div class="dob-container">
                             <span>DOB:</span>
-                            <input type="date" id="dob" name="dob">
-                        </div>
+                            <input 
+                              type="text" 
+                              id="dob" 
+                              name="dob" 
+                              class="form-input"
+                              placeholder="dd/mm/yyyy"
+                            >
+                          </div>
                     </div>
                 </div>
             </div>
             
             <div class="form-row">
                 <div class="form-group">
-                    <label for="fatherName">2. Father's Name:</label>
-                    <input type="text" id="fatherName" name="fatherName">
-                </div>
-                
-                <div class="form-group">
-                    <label for="motherName">3. Mother's Name:</label>
-                    <input type="text" id="motherName" name="motherName">
-                </div>
-            </div>
-            
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="fatherProfession">4. Father's Profession:</label>
-                    <input type="text" id="fatherProfession" name="fatherProfession">
-                </div>
-                
-                <div class="form-group">
-                    <label for="motherProfession">5. Mother's Profession:</label>
-                    <input type="text" id="motherProfession" name="motherProfession">
-                </div>
-            </div>
-            
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="monthlyIncome">6. Monthly Family Income:</label>
-                    <input type="text" id="monthlyIncome" name="monthlyIncome">
+                    <label for="fatherName" class="form-label">2. Father's Name:</label>
+                    <input type="text" id="fatherName" name="fatherName" class="form-input">
                 </div>
 
                 <div class="form-group">
-                    <label for="familyMembers">7. Family Members:</label>
-                    <input type="number" id="familyMembers" name="familyMembers" min="1" max="10" value="3">
+                    <label for="fatherProfession" class="form-label">3. Father's Profession:</label>
+                    <select id="fatherProfession" class="form-select">
+                        <option value="" disabled selected></option>
+                        <option value="business">Business</option>
+                        <option value="begger">Begger</option>
+                        <option value="barber">Barber</option>
+                        <option value="cobbler">Cobbler</option>
+                        <option value="disabled">Disabled</option>
+                        <option value="driver">Driver</option>
+                        <option value="electrician">Electrician</option>
+                        <option value="helper">Helper</option>
+                        <option value="imam/muezzin">Imam/Muezzin</option>
+                        <option value="job holder">Job holder</option>
+                        <option value="jobless">Jobless</option>
+                        <option value="labour">Labour</option>
+                        <option value="mechanic">Mechanic</option>
+                        <option value="massion">Massion</option>
+                        <option value="plumber">Plumber</option>
+                        <option value="security guard">Security Guard</option>
+                        <option value="shop keeper">Shop keeper</option>
+                        <option value="sweeper">Sweeper</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="motherName" class="form-label">4. Mother's Name:</label>
+                    <input type="text" id="motherName" name="motherName" class="form-input">
+                </div>
+                
+                <div class="form-group">
+                    <label for="motherProfession" class="form-label">5. Mother's Profession:</label>
+                    <select id="fatherProfession" class="form-select">
+                        <option value="" disabled selected></option>
+                        <option value="babysitter">babysitter</option>
+                        <option value="business">Business</option>
+                        <option value="begger">Begger</option>
+                        <option value="caretacker">Caretacker</option>
+                        <option value="disabled">Disabled</option>
+                        <option value="housewife">Housewife</option>
+                        <option value="job holder">Job holder</option>
+                        <option value="labour">Labour</option>
+                        <option value="shop keeper">Shop keeper</option>
+                        <option value="sweeper">Sweeper</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="monthlyIncome" class="form-label">6. Monthly Family Income:</label>
+                    <input type="text" id="monthlyIncome" name="monthlyIncome" class="form-input">
+                </div>
+
+                <div class="form-group">
+                    <label for="familyMembers" class="form-label">7. Family Members:</label>
+                    <select id="familyMembers" class="form-select">
+                        <option value=""></option>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
                 </div>
             </div>
             
             <div class="form-row">
                 <div class="form-group full-width">
-                    <table id="familyMembersTable">
+                    <table id="familyMembersTable" class="data-table">
                         <thead>
                             <tr>
                                 <th>SL</th>
                                 <th>Name</th>
                                 <th>Age</th>
                                 <th>M Status</th>
-                                <th>Institute</th>
                                 <th>Class</th>
                                 <th>Profession</th>
-                                <th class="action-cell"></th>
+                                <th class="action-cell">Remarks</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>1</td>
-                                <td><input type="text" class="no-border"></td>
-                                <td><input type="number" min="0" max="120" class="no-border age-input"></td>
+                                <td class="serial">1</td>
+                                <td><input type="text" class="table-input"></td>
                                 <td>
-                                    <select class="no-border">
-                                        <option value="">Select</option>
-                                        <option value="married">Married</option>
-                                        <option value="unmarried">Unmarried</option>
+                                    <select class="table-select">
+                                        <option value=""></option>
+                                        <option value="0">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
                                     </select>
                                 </td>
-                                <td><input type="text" class="no-border"></td>
-                                <td><input type="number" min="1" max="12" class="no-border class-input"></td>
-                                <td><input type="text" class="no-border"></td>
+                                <td>
+                                    <select class="table-select">
+                                        <option value="" disabled selected></option>
+                                        <option value="married">Married</option>
+                                        <option value="unmarried">Unmarried</option>
+                                        <option value="widow">Widow</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="table-select">
+                                        <option value=""></option>
+                                        <option value="0">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="table-select">
+                                        <option value="" disabled selected></option>
+                                        <option value="business">Business</option>
+                                        <option value="job holder">Job holder</option>
+                                        <option value="labour">Labour</option>
+                                    </select>
+                                </td>
                                 <td class="action-cell"><span class="remove-btn">✕</span></td>
                             </tr>
                             <tr>
-                                <td>2</td>
-                                <td><input type="text" class="no-border"></td>
-                                <td><input type="number" min="0" max="120" class="no-border age-input"></td>
+                                <td class="serial">2</td>
+                                <td><input type="text" class="table-input"></td>
                                 <td>
-                                    <select class="no-border">
-                                        <option value="">Select</option>
-                                        <option value="married">Married</option>
-                                        <option value="unmarried">Unmarried</option>
+                                    <select class="table-select">
+                                        <option value=""></option>
+                                        <option value="0">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
                                     </select>
                                 </td>
-                                <td><input type="text" class="no-border"></td>
-                                <td><input type="number" min="1" max="12" class="no-border class-input"></td>
-                                <td><input type="text" class="no-border"></td>
+                                <td>
+                                    <select class="table-select">
+                                        <option value="" disabled selected></option>
+                                        <option value="married">Married</option>
+                                        <option value="unmarried">Unmarried</option>
+                                        <option value="widow">Widow</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="table-select">
+                                        <option value=""></option>
+                                        <option value="0">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="table-select">
+                                        <option value="" disabled selected></option>
+                                        <option value="business">Business</option>
+                                        <option value="job holder">Job holder</option>
+                                        <option value="labour">Labour</option>
+                                    </select>
+                                </td>
                                 <td class="action-cell"><span class="remove-btn">✕</span></td>
                             </tr>
                             <tr>
-                                <td>3</td>
-                                <td><input type="text" class="no-border"></td>
-                                <td><input type="number" min="0" max="120" class="no-border age-input"></td>
+                                <td class="serial">3</td>
+                                <td><input type="text" class="table-input"></td>
                                 <td>
-                                    <select class="no-border">
-                                        <option value="">Select</option>
-                                        <option value="married">Married</option>
-                                        <option value="unmarried">Unmarried</option>
+                                    <select class="table-select">
+                                        <option value=""></option>
+                                        <option value="0">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
                                     </select>
                                 </td>
-                                <td><input type="text" class="no-border"></td>
-                                <td><input type="number" min="1" max="12" class="no-border class-input"></td>
-                                <td><input type="text" class="no-border"></td>
+                                <td>
+                                    <select class="table-select">
+                                        <option value="" disabled selected></option>
+                                        <option value="married">Married</option>
+                                        <option value="unmarried">Unmarried</option>
+                                        <option value="widow">Widow</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="table-select">
+                                        <option value=""></option>
+                                        <option value="0">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="table-select">
+                                        <option value="" disabled selected></option>
+                                        <option value="business">Business</option>
+                                        <option value="job holder">Job holder</option>
+                                        <option value="labour">Labour</option>
+                                    </select>
+                                </td>
                                 <td class="action-cell"><span class="remove-btn">✕</span></td>
                             </tr>
                         </tbody>
@@ -151,140 +321,376 @@
                 <button type="button" class="add-row-btn" id="addRowBtn">Add Row</button>
             </div>
 
+            <!-- House Status Row -->
             <div class="form-row">
-                <div class="form-group full-width">
-                    
-                    <div class="house-status-container">
-                        <label>8. House Status:</label>
-                        <div class="house-status-column left-column">
-                            <!-- Radio buttons -->
-                             
-                            <div class="radio-group">
-                                <div class="radio-option">
-                                    <input type="radio" id="own" name="houseStatus" value="OWN" checked>
-                                    <label for="own">Own</label>
-                                </div>
-                                <div class="radio-option">
-                                    <input type="radio" id="rent" name="houseStatus" value="RENT">
-                                    <label for="rent">Rent</label>
-                                </div>
-                            </div>
-                            
-                            <!-- Property table -->
-                            <table class="property-details">
-                                <tr>
-                                    <th>Properties</th>
-                                    <td><input type="text" class="table-input"></td>
-                                </tr>
-                                <tr>
-                                    <th>Land</th>
-                                    <td><input type="text" class="table-input"></td>
-                                </tr>
-                                <tr>
-                                    <th>House Size</th>
-                                    <td><input type="text" class="table-input"></td>
-                                </tr>
-                            </table>
+                <!-- Radio buttons -->
+                <div class="form-group with-options house-status">
+                    <label class="form-label">8. House Status:</label>
+                    <div class="radio-options">
+                        <div class="radio-option">
+                            <input type="radio" id="own" name="houseStatus" value="OWN" checked class="form-radio">
+                            <label for="own">own</label>
                         </div>
-                        
-                        <div class="house-status-column right-column">
-                            <!-- Type dropdown -->
-                            <div class="type-dropdown-container">
-                                <select id="buildingType">
-                                    <option value="" disabled selected>Type</option>
-                                    <option value="building">Building</option>
-                                    <option value="building">Half Building</option>
-                                    <option value="tinShade">Tin Shade</option>
-                                </select>
-                            </div>
-                            
-                            <!-- Checkboxes -->
-                            <div class="facility-checkboxes">
-                                <div class="checkbox-option">
-                                    <input type="checkbox" id="tubeWell">
-                                    <label for="tubeWell">Tube Well</label>
-                                </div>
-                                <div class="checkbox-option">
-                                    <input type="checkbox" id="latrine">
-                                    <label for="latrine">Latrine</label>
-                                </div>
-                            </div>
+                        <div class="radio-option">
+                            <input type="radio" id="rent" name="houseStatus" value="RENT" class="form-radio">
+                            <label for="rent">rent</label>
                         </div>
                     </div>
+                </div>
+                
+                <!-- Type dropdown -->
+                <div class="form-group">
+                    <label for="building-type" class="form-label">9. Type: </label>
+                    <select id="building-type" class="form-select">
+                        <option value="" disabled selected></option>
+                        <option value="building">Building</option>
+                        <option value="half-building">Half Building</option>
+                        <option value="tinShade">Tin Shade</option>
+                    </select>
+                </div>
+                
+                <!-- Num of room -->
+                <div class="form-group">
+                    <label for="number-of-room" class="form-label">10. Room:</label>
+                    <select id="number-of-room" class="form-select">
+                        <option value=""></option>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
                 </div>
             </div>
 
-            <div class="form-row">
-                <div class="form-group full-width">
-                    <label>9. Present Address:</label>
-                    <div class="address-fields">
-                        <input type="text" placeholder="District">
-                        <input type="text" placeholder="Upozila">
-                        <input type="text" placeholder="Union">
-                        <input type="text" placeholder="Village">
-                    </div>
-                </div>
-            </div>
-            
-            <div class="form-row">
-                <div class="form-group full-width">
-                    <label>10. Permanent Address:</label>
-                    <div class="address-fields">
-                        <input type="text" placeholder="District">
-                        <input type="text" placeholder="Upozila">
-                        <input type="text" placeholder="Union">
-                        <input type="text" placeholder="Village">
-                    </div>
-                </div>
-            </div>
-            
+            <!-- House Size Section -->
             <div class="form-row">
                 <div class="form-group">
-                    <label for="email">12. Email Address:</label>
-                    <input type="email" id="email" name="email">
+                    <label for="house-size" class="form-label">11. House Size: </label>
+                    <input type="text" id="house-size" name="house-size" class="form-input">
+                </div>
+
+                <div class="form-group with-options facilities">
+                    <div class="facility-checkboxes">
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="tubeWell" class="form-checkbox">
+                            <label for="tubeWell">Tube Well</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="latrine" class="form-checkbox">
+                            <label for="latrine">Latrine</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Properties Section -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="plot-size" class="form-label">12. Plot Size: </label>
+                    <div class="input-with-unit">
+                        <input type="text" id="plot-size" name="plot-size" 
+                               class="form-input with-unit">
+                        <span class="unit-inside">DCML</span>
+                    </div>
+                </div>
+            
+                <div class="form-group">
+                    <label for="land-size" class="form-label">13. Land Size: </label>
+                    <div class="input-with-unit">
+                        <input type="text" id="land-size" name="land-size" 
+                               class="form-input with-unit">
+                        <span class="unit-inside">DCML</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Permanent Address Table -->
+            <div class="form-row">
+                <div class="form-group full-width">
+                    <table class="address-table">
+                        <tr id="blue">
+                            <th>Permanent Address:</th>
+            
+                            <td>
+                                <label for="district">
+                                    District:
+                                    <select id="permanent_district" name="district">
+                                        <option value="x"></option>
+                                        <option value="bagerhat">Bagerhat</option>
+                                        <option value="bandarban">Bandarban</option>
+                                        <option value="barguna">Barguna</option>
+                                        <option value="barishal">Barishal</option>
+                                        <option value="bhola">Bhola</option>
+                                        <option value="bogura">Bogura</option>
+                                        <option value="brahmanbaria">Brahmanbaria</option>
+                                        <option value="chandpur">Chandpur</option>
+                                        <option value="chapai nawabganj">Chapai Nawabganj</option>
+                                        <option value="chittagong">Chittagong</option>
+                                        <option value="chuadanga">Chuadanga</option>
+                                        <option value="comilla">Comilla</option>
+                                        <option value="cox_bazar">Cox's Bazar</option>
+                                        <option value="dhaka">Dhaka</option>
+                                        <option value="dinajpur">Dinajpur</option>
+                                        <option value="faridpur">Faridpur</option>
+                                        <option value="feni">Feni</option>
+                                        <option value="gaibandha">Gaibandha</option>
+                                        <option value="gazipur">Gazipur</option>
+                                        <option value="gopalganj">Gopalganj</option>
+                                        <option value="habiganj">Habiganj</option>
+                                        <option value="jamalpur">Jamalpur</option>
+                                        <option value="jashore">Jashore</option>
+                                        <option value="jhalokati">Jhalokati</option>
+                                        <option value="jhenaidah">Jhenaidah</option>
+                                        <option value="joypurhat">Joypurhat</option>
+                                        <option value="khagrachhari">Khagrachhari</option>
+                                        <option value="khulna">Khulna</option>
+                                        <option value="kishoreganj">Kishoreganj</option>
+                                        <option value="kurigram">Kurigram</option>
+                                        <option value="kushtia">Kushtia</option>
+                                        <option value="lakshmipur">Lakshmipur</option>
+                                        <option value="lalmonirhat">Lalmonirhat</option>
+                                        <option value="madaripur">Madaripur</option>
+                                        <option value="magura">Magura</option>
+                                        <option value="manikganj">Manikganj</option>
+                                        <option value="meherpur">Meherpur</option>
+                                        <option value="moulvibazar">Moulvibazar</option>
+                                        <option value="munshiganj">Munshiganj</option>
+                                        <option value="mymensingh">Mymensingh</option>
+                                        <option value="naogaon">Naogaon</option>
+                                        <option value="narail">Narail</option>
+                                        <option value="narayanganj">Narayanganj</option>
+                                        <option value="narsingdi">Narsingdi</option>
+                                        <option value="natore">Natore</option>
+                                        <option value="netrokona">Netrokona</option>
+                                        <option value="nilphamari">Nilphamari</option>
+                                        <option value="noakhali">Noakhali</option>
+                                        <option value="pabna">Pabna</option>
+                                        <option value="panchagarh">Panchagarh</option>
+                                        <option value="patuakhali">Patuakhali</option>
+                                        <option value="pirojpur">Pirojpur</option>
+                                        <option value="rajbari">Rajbari</option>
+                                        <option value="rajshahi">Rajshahi</option>
+                                        <option value="rangamati">Rangamati</option>
+                                        <option value="rangpur">Rangpur</option>
+                                        <option value="satkhira">Satkhira</option>
+                                        <option value="shariatpur">Shariatpur</option>
+                                        <option value="sherpur">Sherpur</option>
+                                        <option value="sirajganj">Sirajganj</option>
+                                        <option value="sunamganj">Sunamganj</option>
+                                        <option value="sylhet">Sylhet</option>
+                                        <option value="tangail">Tangail</option>
+                                        <option value="thakurgaon">Thakurgaon</option>
+                                    </select>
+                                </label>
+                            </td>
+                            <td>
+                                <label for="upozila">
+                                    Upozila:
+                                    <select id="permanent_upozila" name="upozila">
+                                        <option value="y"> </option>
+                                    </select>
+                                </label>
+                            </td>
+                        </tr>
+                        <tr id="blue">
+                            <td>
+                                <label for="union">
+                                    Union:
+                                    <select id="permanent_union" name="union">
+                                        <option value="z"> </option>
+                                    </select>
+                                </label>
+                            </td>
+                            <td>
+                                <label for="village">
+                                    Village:
+                                    <input type="text" id="permanent_village">
+                                </label>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Same Address Checkbox -->
+            <div class="form-row">
+                <div class="form-group full-width">
+                    <label class="same-address-checkbox">
+                        <input type="checkbox" id="sameAddress" class="form-checkbox"> Same as permanent address
+                    </label>
+                </div>
+            </div>
+
+            <!-- Present Address Table -->
+            <div class="form-row">
+                <div class="form-group full-width">
+                    <table class="address-table">
+                        <tr id="blue">
+                            <th>Present Address:</th>
+            
+                            <td>
+                                <label for="district">
+                                    District:
+                                    <select id="district" name="district">
+                                        <option value="x"></option>
+                                        <option value="bagerhat">Bagerhat</option>
+                                        <option value="bandarban">Bandarban</option>
+                                        <option value="barguna">Barguna</option>
+                                        <option value="barishal">Barishal</option>
+                                        <option value="bhola">Bhola</option>
+                                        <option value="bogura">Bogura</option>
+                                        <option value="brahmanbaria">Brahmanbaria</option>
+                                        <option value="chandpur">Chandpur</option>
+                                        <option value="chapai nawabganj">Chapai Nawabganj</option>
+                                        <option value="chittagong">Chittagong</option>
+                                        <option value="chuadanga">Chuadanga</option>
+                                        <option value="comilla">Comilla</option>
+                                        <option value="cox_bazar">Cox's Bazar</option>
+                                        <option value="dhaka">Dhaka</option>
+                                        <option value="dinajpur">Dinajpur</option>
+                                        <option value="faridpur">Faridpur</option>
+                                        <option value="feni">Feni</option>
+                                        <option value="gaibandha">Gaibandha</option>
+                                        <option value="gazipur">Gazipur</option>
+                                        <option value="gopalganj">Gopalganj</option>
+                                        <option value="habiganj">Habiganj</option>
+                                        <option value="jamalpur">Jamalpur</option>
+                                        <option value="jashore">Jashore</option>
+                                        <option value="jhalokati">Jhalokati</option>
+                                        <option value="jhenaidah">Jhenaidah</option>
+                                        <option value="joypurhat">Joypurhat</option>
+                                        <option value="khagrachhari">Khagrachhari</option>
+                                        <option value="khulna">Khulna</option>
+                                        <option value="kishoreganj">Kishoreganj</option>
+                                        <option value="kurigram">Kurigram</option>
+                                        <option value="kushtia">Kushtia</option>
+                                        <option value="lakshmipur">Lakshmipur</option>
+                                        <option value="lalmonirhat">Lalmonirhat</option>
+                                        <option value="madaripur">Madaripur</option>
+                                        <option value="magura">Magura</option>
+                                        <option value="manikganj">Manikganj</option>
+                                        <option value="meherpur">Meherpur</option>
+                                        <option value="moulvibazar">Moulvibazar</option>
+                                        <option value="munshiganj">Munshiganj</option>
+                                        <option value="mymensingh">Mymensingh</option>
+                                        <option value="naogaon">Naogaon</option>
+                                        <option value="narail">Narail</option>
+                                        <option value="narayanganj">Narayanganj</option>
+                                        <option value="narsingdi">Narsingdi</option>
+                                        <option value="natore">Natore</option>
+                                        <option value="netrokona">Netrokona</option>
+                                        <option value="nilphamari">Nilphamari</option>
+                                        <option value="noakhali">Noakhali</option>
+                                        <option value="pabna">Pabna</option>
+                                        <option value="panchagarh">Panchagarh</option>
+                                        <option value="patuakhali">Patuakhali</option>
+                                        <option value="pirojpur">Pirojpur</option>
+                                        <option value="rajbari">Rajbari</option>
+                                        <option value="rajshahi">Rajshahi</option>
+                                        <option value="rangamati">Rangamati</option>
+                                        <option value="rangpur">Rangpur</option>
+                                        <option value="satkhira">Satkhira</option>
+                                        <option value="shariatpur">Shariatpur</option>
+                                        <option value="sherpur">Sherpur</option>
+                                        <option value="sirajganj">Sirajganj</option>
+                                        <option value="sunamganj">Sunamganj</option>
+                                        <option value="sylhet">Sylhet</option>
+                                        <option value="tangail">Tangail</option>
+                                        <option value="thakurgaon">Thakurgaon</option>
+                                    </select>
+                                </label>
+                            </td>
+                            <td>
+                                <label for="upozila">
+                                    Upozila:
+                                    <select id="upozila" name="upozila">
+                                        <option value="y"> </option>
+                                    </select>
+                                </label>
+                            </td>
+                        </tr>
+                        <tr id="blue">
+                            <td>
+                                <label for="union">
+                                    Union:
+                                    <select id="union" name="union">
+                                        <option value="z"> </option>
+                                    </select>
+                                </label>
+                            </td>
+                            <td>
+                                <label for="village">
+                                    Village:
+                                    <input type="text" id="village">
+                                </label>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group full-width">
-                    <label>11. Contact Numbers:</label>
-                    <table class="contact-numbers-table">
-                        <thead>
-                            <tr>
-                                <th>
-                                    <select class="contact-relation">
-                                        <option value="self">Self</option>
-                                        <option value="family">Family Member</option>
-                                        <option value="relative">Relative</option>
-                                        <option value="neighbor">Neighbor</option>
-                                    </select>
-                                </th>
-                                <th>
-                                    <select class="contact-relation">
-                                        <option value="self">Self</option>
-                                        <option value="family">Family Member</option>
-                                        <option value="relative">Relative</option>
-                                        <option value="neighbor">Neighbor</option>
-                                    </select>
-                                </th>
-                                <th>
-                                    <select class="contact-relation">
-                                        <option value="self">Self</option>
-                                        <option value="family">Family Member</option>
-                                        <option value="relative">Relative</option>
-                                        <option value="neighbor">Neighbor</option>
-                                    </select>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><input style="text-align: center;"  class="phone-input" type="tel" placeholder="Enter phone number" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required></td>
-                                <td><input style="text-align: center;"  class="phone-input" type="tel" placeholder="Enter phone number" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required></td>
-                                <td><input style="text-align: center;"  class="phone-input" type="tel" placeholder="Enter phone number" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required></td>
-                            </tr>
-                        </tbody>
+                    <table class="contact-table">
+                        <tr>
+                            <th>Relation: </th>
+                            <td>
+                                <select class="table-select contact-relation">
+                                    <option value="" disabled selected></option>
+                                    <option value="self">Self</option>
+                                    <option value="father">Father</option>
+                                    <option value="mother">Mother</option>
+                                    <option value="brother">Brother</option>
+                                    <option value="sister">Sister</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="table-select contact-relation">
+                                    <option value="" disabled selected></option>
+                                    <option value="self">Self</option>
+                                    <option value="father">Father</option>
+                                    <option value="mother">Mother</option>
+                                    <option value="brother">Brother</option>
+                                    <option value="sister">Sister</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="table-select contact-relation">
+                                    <option value="" disabled selected></option>
+                                    <option value="relative">Relative</option>
+                                    <option value="neighbor">Neighbor</option>
+                                    <option value="grandfather">Grandfather</option>
+                                    <option value="grandmother">Grandmother</option>
+                                    <option value="uncle">Uncle</option>
+                                    <option value="aunt">Aunt</option>
+                                </select>
+                            </td>
+                        </tr>
+                
+                        <tr>
+                            <th>Contact Number: </th>
+                            <td><input class="table-input phone-input" type="tel" placeholder="Enter phone number" value="+880" pattern="[0-9]{5}-[0-9]{4}-[0-9]{4}" required></td>
+                            <td><input class="table-input phone-input" type="tel" placeholder="Enter phone number" value="+880" pattern="[0-9]{5}-[0-9]{4}-[0-9]{4}" required></td>
+                            <td><input class="table-input phone-input" type="tel" placeholder="Enter phone number" value="+880" pattern="[0-9]{5}-[0-9]{4}-[0-9]{4}" required></td>
+                        </tr>
                     </table>
+                </div>
+            </div>
+                        
+            <div class="form-row">
+                <div class="form-group full-width">
+                    <label for="email" class="form-label">12. Email Address:</label>
+                    <input type="email" id="email" name="email" class="form-input">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group full-width">
+                    <label for="comments" class="form-label">13. Comments:</label>
+                    <div id="comments" name="comments" class="form-textarea" contenteditable="true" data-placeholder="Enter your comments (max 100 words)"></div>
+                    <small id="wordCount" class="word-count">0/100 words</small>
                 </div>
             </div>
         </form>
@@ -298,28 +704,21 @@
 
     <script>
         // Photo Upload Functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const photoBox = document.getElementById('photoBox');
-            const photoUpload = document.getElementById('photoUpload');
-            const patientPhoto = document.getElementById('patientPhoto');
-            
-            // Photo upload functionality
-            photoBox.addEventListener('click', function() {
-                photoUpload.click();
-            });
-            
-            photoUpload.addEventListener('change', function(e) {
-                if (e.target.files && e.target.files[0]) {
-                    const reader = new FileReader();
-                    
-                    reader.onload = function(event) {
-                        patientPhoto.src = event.target.result;
-                        photoBox.classList.add('has-image');
-                    }
-                    
-                    reader.readAsDataURL(e.target.files[0]);
+        document.getElementById('heartPhotoBox').addEventListener('click', function() {
+            document.getElementById('photoUpload').click();
+        });
+
+        document.getElementById('photoUpload').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const img = document.getElementById('passportPhoto');
+                    img.src = event.target.result;
+                    document.getElementById('heartPhotoBox').classList.add('has-photo');
                 }
-            });
+                reader.readAsDataURL(file);
+            }
         });
     
         // Family Members Table Functionality
@@ -334,19 +733,56 @@
                 const newRowNum = rows.length + 1;
                 
                 newRow.innerHTML = `
-                    <td>${newRowNum}</td>
-                    <td><input type="text" class="no-border"></td>
-                    <td><input type="number" min="0" max="120" class="no-border age-input"></td>
+                    <td class="serial">${newRowNum}</td>
+                    <td><input type="text" class="table-input"></td>
                     <td>
-                        <select class="no-border">
-                            <option value="">Select</option>
-                            <option value="married">Married</option>
-                            <option value="unmarried">Unmarried</option>
+                        <select class="table-select">
+                            <option value=""></option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
                         </select>
                     </td>
-                    <td><input type="text" class="no-border"></td>
-                    <td><input type="number" min="1" max="12" class="no-border class-input"></td>
-                    <td><input type="text" class="no-border"></td>
+                    <td>
+                        <select class="table-select">
+                            <option value="" disabled selected></option>
+                            <option value="married">Married</option>
+                            <option value="unmarried">Unmarried</option>
+                            <option value="widow">Widow</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="table-select">
+                            <option value=""></option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="table-select">
+                            <option value="" disabled selected></option>
+                            <option value="business">Business</option>
+                            <option value="job holder">Job holder</option>
+                            <option value="labour">Labour</option>
+                        </select>
+                    </td>
                     <td class="action-cell"><span class="remove-btn">✕</span></td>
                 `;
                 
@@ -371,57 +807,168 @@
             if(confirm('Are you sure you want to refresh the form? All data will be lost.')) {
                 document.querySelector('form').reset();
                 // Clear photo
-                document.getElementById('patientPhoto').src = '';
-                document.getElementById('photoBox').classList.remove('has-image');
+                document.getElementById('passportPhoto').src = '';
+                document.getElementById('heartPhotoBox').classList.remove('has-photo');
                 // Reset table to initial 3 rows
                 const tbody = document.querySelector('#familyMembersTable tbody');
                 tbody.innerHTML = `
                     <tr>
-                        <td>1</td>
-                        <td><input type="text" class="no-border"></td>
-                        <td><input type="number" min="0" max="120" class="no-border age-input"></td>
+                        <td class="serial">1</td>
+                        <td><input type="text" class="table-input"></td>
                         <td>
-                            <select class="no-border">
-                                <option value="">Select</option>
-                                <option value="married">Married</option>
-                                <option value="unmarried">Unmarried</option>
+                            <select class="table-select">
+                                <option value=""></option>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
                             </select>
                         </td>
-                        <td><input type="text" class="no-border"></td>
-                        <td><input type="number" min="1" max="12" class="no-border class-input"></td>
-                        <td><input type="text" class="no-border"></td>
+                        <td>
+                            <select class="table-select">
+                                <option value="" disabled selected></option>
+                                <option value="married">Married</option>
+                                <option value="unmarried">Unmarried</option>
+                                <option value="widow">Widow</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select class="table-select">
+                                <option value=""></option>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select class="table-select">
+                                <option value="" disabled selected></option>
+                                <option value="business">Business</option>
+                                <option value="job holder">Job holder</option>
+                                <option value="labour">Labour</option>
+                            </select>
+                        </td>
                         <td class="action-cell"><span class="remove-btn">✕</span></td>
                     </tr>
                     <tr>
-                        <td>2</td>
-                        <td><input type="text" class="no-border"></td>
-                        <td><input type="number" min="0" max="120" class="no-border age-input"></td>
+                        <td class="serial">2</td>
+                        <td><input type="text" class="table-input"></td>
                         <td>
-                            <select class="no-border">
-                                <option value="">Select</option>
-                                <option value="married">Married</option>
-                                <option value="unmarried">Unmarried</option>
+                            <select class="table-select">
+                                <option value=""></option>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
                             </select>
                         </td>
-                        <td><input type="text" class="no-border"></td>
-                        <td><input type="number" min="1" max="12" class="no-border class-input"></td>
-                        <td><input type="text" class="no-border"></td>
+                        <td>
+                            <select class="table-select">
+                                <option value="" disabled selected></option>
+                                <option value="married">Married</option>
+                                <option value="unmarried">Unmarried</option>
+                                <option value="widow">Widow</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select class="table-select">
+                                <option value=""></option>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select class="table-select">
+                                <option value="" disabled selected></option>
+                                <option value="business">Business</option>
+                                <option value="job holder">Job holder</option>
+                                <option value="labour">Labour</option>
+                            </select>
+                        </td>
                         <td class="action-cell"><span class="remove-btn">✕</span></td>
                     </tr>
                     <tr>
-                        <td>3</td>
-                        <td><input type="text" class="no-border"></td>
-                        <td><input type="number" min="0" max="120" class="no-border age-input"></td>
+                        <td class="serial">3</td>
+                        <td><input type="text" class="table-input"></td>
                         <td>
-                            <select class="no-border">
-                                <option value="">Select</option>
+                            <select class="table-select">
+                                <option value=""></option>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>    
+                        </td>
+                        <td>
+                            <select class="table-select">
+                                <option value="" disabled selected></option>
                                 <option value="married">Married</option>
                                 <option value="unmarried">Unmarried</option>
+                                <option value="widow">Widow</option>
                             </select>
                         </td>
-                        <td><input type="text" class="no-border"></td>
-                        <td><input type="number" min="1" max="12" class="no-border class-input"></td>
-                        <td><input type="text" class="no-border"></td>
+                        <td>
+                            <select class="table-select">
+                                <option value=""></option>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select class="table-select">
+                                <option value="" disabled selected></option>
+                                <option value="business">Business</option>
+                                <option value="job holder">Job holder</option>
+                                <option value="labour">Labour</option>
+                            </select>
+                        </td>
                         <td class="action-cell"><span class="remove-btn">✕</span></td>
                     </tr>
                 `;
@@ -498,23 +1045,906 @@
                 let cleaned = ('' + input.value).replace(/\D/g, '');
 
                 // Limit to 11 digits
-                if (cleaned.length >= 11) {
-                    cleaned = cleaned.slice(0, 11);
+                if (cleaned.length >= 13) {
+                    cleaned = cleaned.slice(0, 13);
                 }
 
                 // Apply formatting (e.g., 123-4565-7890)
-                let match = cleaned.match(/^(\d{3})(\d{4})(\d{4})$/);
+                let match = cleaned.match(/^(\d{5})(\d{4})(\d{4})$/);
                 if (match) {
                     input.value = match[1] + '-' + match[2] + '-' + match[3];
                 } else {
                     // Apply partial formatting if not enough digits
-                    input.value = cleaned.replace(/(\d{3})(\d{0,4})?(\d{0,4})/, function (_, p1, p2, p3) {
+                    input.value = cleaned.replace(/(\d{5})(\d{0,4})?(\d{0,4})/, function (_, p1, p2, p3) {
                         return p1 + (p2 ? '-' + p2 : '') + (p3 ? '-' + p3 : '');
                     });
                 }
             });
         });
-    
+
+        // Dynamic address selection
+
+        
+        // Option data
+        const data = {
+            'bagerhat': {
+                upozilas: {
+                    'Bagerhat sadar': ['Baraipara', 'Bemarta', 'Bishnupur', 'Dema', 'Gotapara', 'Jatrapur', 'Karapara', 'Khanpur', 'Rakhalgachhi', 'Shat Gambuj'],
+                    'Chitalmari': ['Barabaria', 'Char Baniari', 'Chitalmari', 'Hizla', 'Kalatala', 'Santoshpur', 'Shibpur'],
+                    'Fakirhat': ['Bahirdia Mansa', 'Betaga', 'Fakirhat', 'Lakhpur', 'Mulghar', 'Naldha Maubhog', 'Piljanga', 'Subhadia'],
+                    'Kachua': ['Badhal', 'Dhopakhali', 'Gazalia', 'Gopalpur', 'Kachua', 'Maghia', 'Raripara'],
+                    'Mollahat': ['Atjuri', 'Chunkhola', 'Gangni', 'Gaola', 'Kodalia', 'Kulia', 'Udaypur'],
+                    'Mongla': ['Burirdanga', 'Chandpi', 'Chila', 'Mithakhali', 'Suniltala', 'Sundarban'],
+                    'Morrelganj': ['Baharbunia', 'Balaibunia', 'Banagram', 'Baraikhali', 'Chingrakhali', 'Daibagnyahati', 'Hoglabunia', 'Hogla Pasha', 'Jiudhara', 'Khuolia', 'Morrelganj', 'Nishanbaria', 'Panchakaran', 'Putikhali', 'Ramchandrapur', 'Teligati'],
+                    'Rampal': ['Baintala', 'Banshtali', 'Bhojpatia', 'Gaurambha', 'Hurka', 'Mallikerber', 'Perikhali', 'Rajnagar', 'Rampal', 'Ujalkur'],
+                    'Sarankhola': ['Dakshinkhali', 'Dhanshagor', 'Khontakata', 'Rayenda']
+                }
+            },
+            'bandarban': {
+                upozilas: {
+                    'Alikadam': ['Alikadam', 'Chaikkhyang', 'Kurukpata', 'Nayapara'],
+                    'Bandarban Sadar': ['Bandarban', 'Kuhalong', 'Rajbila', 'Suwalak', 'Tankabati'],
+                    'Lama': ['Aziznagar', 'Faitang', 'Fasyakhali', 'Gajalia', 'Lama', 'Rupshipara', 'Sarai'],
+                    'Naikhongchhari': ['Baishari', 'Dochhari', 'Ghandung', 'Naikhongchhari'],
+                    'Rowangchhari': ['Alikhong', 'Nowapatang', 'Rowangchhari', 'Tarachha'],
+                    'Ruma': ['Ghalangya', 'Paindu', 'Remakri Pransa', 'Ruma'],
+                    'Thanchi': ['Balipara', 'Remakry', 'Thanchi', 'Tindu']
+                }
+            },
+            'barguna': {
+                upozilas: {
+                    'Amtali': ['Amtali', 'Arpangasia', 'Atharogasia', 'Chawra', 'Gulishakhali', 'Holodia', 'Kukua'],
+                    'Bamna': ['Bamna', 'Bukabunia', 'Dauatola', 'Ramna'],
+                    'Barguna Sadar': ['Aylapatakata', 'Barguna', 'Bodorkhali', 'Burirchor', 'Dhalua', 'Fuljhuri', 'Gowrichanna', 'Keorabunia', 'M. Baliatali', 'Noltona'],
+                    'Betagi': ['Betagi', 'Bibichini', 'Buramazumdar', 'Hosnabad', 'Kazirabad', 'Mokamia', 'Sarishamuri'],
+                    'Patharghata': ['Char Duani', 'Kakchira', 'Kalmegha', 'Kathaltali', 'Nachnapara', 'Patharghata', 'Raihanpur'],
+                    'Taltali': ['Barabagi', 'Chhotabagi', 'Kariibaria', 'Nishanbaria', 'Panchakoralia', 'Sarikkhali', 'Sonakata']
+                }
+            },
+            'barishal': {
+                upozilas: {
+                    'Agailjhara': ['Bagdha', 'Bakal', 'Gaila', 'Rajiher', 'Ratanpur'],
+                    'Babuganj': ['Chandpasha', 'Dehergati', 'Jahangir Nagar', 'Kedarpur', 'Madhabpasha', 'Rahmatpur'],
+                    'Bakerganj': ['Bharpasha', 'Charadi', 'Char Amaddi', 'Darial', 'Dudhal', 'Durgapasha', 'Faridpur', 'Garuria', 'Kabai', 'Kalashkati', 'Nalua', 'Niamati', 'Padri Shibpur', 'Rangasree'],
+                    'Banaripara': ['Baisari', 'Banaripara', 'Bisarkandi', 'Chakhar', 'Iluhar', 'Saliabakpur', 'Saidkati', 'Udaykati'],
+                    'Barishal Sadar': ['Chandpura', 'Chandramohan', 'Char Baria', 'Char Kowa', 'Char Monai', 'Jagua', 'Kashipur', 'Roypasha-Karapur', 'Shayestabad', 'Tungibaria'],
+                    'Gournadi': ['Barthi', 'Batajore', 'Chandshi', 'Khanjapur', 'Mahilara', 'Nalchira', 'Sarikal'],
+                    'Hizla': ['Bara Jalia', 'Dhulkhola', 'Guabaria', 'Harinathpur', 'Hizla Gaurabdi', 'Kuchaipatti', 'Memania'],
+                    'Mehendiganj': ['Alimabad', 'Andharmanik', 'Bhasanchar', 'Bidyanandapur', 'Chandpur', 'Char Ekkaria', 'Char Gopalpur', 'Dakshin Ulania', 'Darichar Khajuria', 'Gobindapur', 'Jangalia', 'Joynagar', 'Lata', 'Mehendiganj', 'Sreepur', 'Uttar Ulania'],
+                    'Muladi': ['Batamara', 'Char Kalekhan', 'Gachhua', 'Kazir Char', 'Muladi', 'Nazirpur', 'Safipur'],
+                    'Wazirpur': ['Shikerpur', 'Bamrail', 'Barakotha', 'Guthia', 'Harta', 'Jalla', 'Otra', 'Satla', 'Sholak']
+                }
+            },
+            'bhola': {
+                upozilas: {
+                    'Bhola Sadar': ['Alinagor', 'Bapta', 'Charshamya', 'Dakshin Digholdi', 'Dhania', 'Ilisha', 'Kachia', 'Paschim Ilisa', 'Razapur', 'Shibpur', 'Uttar Digholdi', 'Vheduria', 'Vhelumia'], 
+                    'Burhanuddin': ['Boro Manika', 'Deula', 'Gongapur', 'Hasannogor', 'Kachia', 'Kutuba', 'Pakshia', 'Sachra', 'Tobgi'],
+                    'Char Fasson': ['Abubakarpur', 'Abdullapur', 'Aminabad', 'Aslampur', 'Awajpur', 'Char Kolmi', 'Char Madras', 'Char Manika', 'Dhal Char', 'Hazarigonj', 'Jahanpur', 'Jinnaghar', 'Kukri Mukri', 'Mujib Nagar', 'Nazrul Nagar', 'Nilkamal', 'Nurabad', 'Osmanganj', 'Rasulpur'], 
+                    'Daulatkhan': ['Char Khalifa', 'Charpata', 'Dakshin Joynagar', 'Hazipur', 'Madanpur', 'Madua', 'Sayedpur', 'Uttar Joynagar', 'Vhovanipur'],
+                    'Lalmohan': ['Abu Mucha commandeer Bazar', 'Badarpur', 'Charbhuta', 'Dholigournagar', 'Farajgonj', 'Kalma', 'Lalmohan', 'Lord Hardinge', 'Paschim Char Umed', 'Ramagonj'],
+                    'Manpura': ['Dakshin Sakuchia', 'Hazirhat', 'Monpura', 'Uttar Sakuchia'],
+                    'Tazumuddin': ['Baro Molongchora', 'Chanchra', 'Chadpur', 'Shambupur', 'Sonapur']
+                }
+            },
+            'bogura': {
+                upozilas: {
+                    'Adamdighi': ['Adamdighi Sadar', 'Chapapur', 'Chhatiangram', 'Kundugram', 'Nashratpur', 'Santahar'],
+                    'Bogura Sadar': ['Erulia', 'Fapore', 'Gokul', 'Lahiri Para', 'Namuja', 'Nishindara', 'Noongola', 'Rajapur', 'Sekherkola', 'Shabgram', 'Shakharia'], 
+                    'Dhunat': ['Kalerpara', 'Bhandarbari', 'Chaukibari', 'Chikashi', 'Dhunat', 'Elangi', 'Gopalnagar', 'Gosainbari', 'Mathurapur', 'Nimgachhi'],
+                    'Dhupchanchia': ['Chamrul', 'Dhupchanchia', 'Gobindapur', 'Gunahar', 'Talora', 'Zianagar'],
+                    'Gabtali': ['Balia Dighi', 'Dakshinpara', 'Durgahata', 'Gabtali', 'Kagail', 'Mahishaban', 'Naruamala', 'Nasipur', 'Nepaltali', 'Rameshwarpur', 'Shunkhanpukur', 'Sonarai'],
+                    'Kahaloo': ['Bir Kedar', 'Durgapur', 'Jamgaon', 'Kahaloo', 'Kalai Majh Para', 'Malancha', 'Murail', 'Narahatta', 'Paikar'],
+                    'Nandigram': ['Bhatgram', 'Bhatra', 'Burail', 'Nandigram', 'Thalta Majhgram'],
+                    'Sariakandi': ['Bhelabari', 'Bohail', 'Chaluabari', 'Chandan Baisha', 'Fulbari', 'Hat Sherpur', 'Kamalpur', 'Karnibari', 'Kazla', 'Kutubpur', 'Narchi', 'Sariakandi'],
+                    'Shajahanpur': ['Amrool', 'Aria', 'Asekpur', 'Chopinagar', 'Gohail', 'Kharna', 'Khotta Para', 'Madla', 'Majhira'],
+                    'Shibganj': ['Shibganj', 'Bihar', 'Roynagar', 'Buriganj', 'Majhihatta', 'Pirab', 'Atmul', 'Kichak', 'Maidanhata', 'Deuli', 'Mokamtala', 'Saidpur'],
+                    'Sherpur': ['Bhabanipur', 'Bishalpur', 'Garidaha', 'Khamarkandi', 'Khanpur', 'Kusumbi', 'Mirzapur', 'Shah-Bandegi', 'Shimabari', 'Sughat'],
+                    'Sonatala': ['Balua', 'Digdair', 'Madhupur', 'Pakulla', 'Sonatala Sadar', 'Tekani Chukainagar', 'Zorgachha']
+                }
+            },
+            'brahmanbaria': {
+                upozilas: {
+                    'Akhaura': ['Dakshin Akhaura', 'Dharkhar', 'Monionda', 'Mogra', 'Uttar Akhaura'],
+                    'Ashuganj': ['Araishidha', 'Ashuganj', 'Char Chartala', 'Durgapur', 'Lalpur', 'Paschim Talshahar', 'Sarifpur', 'Tarua'],
+                    'Bancharampur': ['Ayabpur', 'Bancharampur', 'Dariadaulat', 'Darikandi', 'Fardabad', 'Manikpur', 'Pahariyakandi', 'Rupasdi', 'Saifullyakandi', 'Salimabad', 'Sonarampur', 'Tezkhali', 'Ujanchar'],
+                    'Bijoynagar': ['Bhudanty', 'Bishupor', 'Chandura', 'Char Islampur', 'Champaknagar', 'Harashpur', 'Ichhapur', 'Paharpur', 'Pattan', 'Singerbil'],
+                    'Brahmanbaria Sadar': ['Basudeb', 'Bodhal', 'Dakshin Natai', 'Machihata', 'Majlishpur', 'Ramrail', 'Sadekpur', 'Shuhilpur', 'Sultanpur', 'Talsahar', 'Uttar Natai'],
+                    'Kasba': ['Badair', 'Bayek', 'Benauty', 'Gopinathpur', 'Kasba Paschim', 'Kayempur', 'Kharera', 'Kuti', 'Mehari', 'Mulagram'],
+                    'Nabinagar': ['Barail', 'Barikandi', 'Biddyakut', 'Birgaon', 'Bitghar', 'Damla', 'Gulpukuria', 'Ibrahimpur', 'Junedpur', 'Kaitala Dakshin', 'Kaitala Uttar', 'Krishnanagar', 'Laur Fatehpur', 'Natghar', 'Paschim Nabinagar', 'Purba Nabinagar', 'Rasullabad', 'Ratanpur', 'Salimganj', 'Satmura', 'Shibpur', 'Shahpur', 'Shyamgram', 'Sreerampur'],
+                    'Nasirnagar': ['Chatalpar', 'Bholakut', 'Kunda', 'Goalnagar', 'Nasirnagar', 'Burishwar', 'Fandauk', 'Guniauk', 'Chapairtala', 'Gokarna', 'Purbabhag', 'Haripur', 'Dharamandal'],
+                    'Sarail': ['Auraol', 'Chunta', 'Kalikachchha', 'Noagaon', 'Pakshimul', 'Panishor', 'Sarail', 'Shahbazpur', 'Shahjadapur']
+                }
+            },
+            'chandpur': {
+                upozilas: {
+                    'Chandpur Sadar': ['Ashikati', 'Baghadi', 'Balia', 'Bishnupur', 'Chandra', 'Hanar Char', 'Ibrahimpur', 'Kalyanpur', 'Maishadi', 'Rajrajeshwar', 'Rampur', 'Shakhua', 'Shah Mahmudpur', 'Tarpur Chandi'], 
+                    'Faridganj': ['Dakshin Faridganj', 'Dakshin Gobindapur', 'Dakshin Paik Para', 'Dakshin Rupsha', 'Paschim Balithuba', 'Paschim Char Dukhia', 'Paschim Gupti', 'Paschim Subidpur', 'Purba Balithuba', 'Purba Char Dukhia', 'Purba Gupti', 'Purba Subidpur', 'Uttar Gobindapur', 'Uttar Paikpara', 'Uttar Rupsha'],
+                    'Haimchar': ['Char Bhairabi', 'Dakshin Algi Durgapur', 'Gazipur', 'Haimchar', 'Nilkamal', 'Uttar Algi Durgapur'],
+                    'Hajiganj': ['Bakila (Dakshin Rajargaon)', 'Daddoshgram Union', 'Dakshin Gandharbapur', 'Dakshin Kalocho', 'Hajiganj', 'Hatila Paschim', 'Hatila Purba', 'Paschim Barkur', 'Purba Barkur', 'Uttar Gandharabpur', 'Uttar Kalocho', 'Uttar Rajgaon'],
+                    'Kachua': ['Ashrafpur', 'Bitara', 'Dakshin Gohat', 'Dakshin Kachua', 'Kadla', 'Karyia', 'Pashim Sahadebpur', 'Pathoir', 'Purba Sahadebpur', 'Sachar', 'Uttar Gohat', 'Uttar Kachua'],
+                    'Matlab Dakshin': ['Khadergaon', 'Matlab Municipality', 'Narayanpur Municipality', 'Nayergaon Dakshin', 'Nayergaon Uttar', 'Upadi Dakshin', 'Upadi Uttar'],  // South Matlab
+                    'Matlab Uttar': ['Baganbari', 'Durgapur', 'Eklaspur', 'Faraji Kandi', 'Gazra', 'Islamabad', 'Jahirabad', 'Kalakanda', 'Mohanpur', 'Paschim Fatehpur', 'Purba Fatehpur', 'Sadullapur', 'Satnal', 'Sultanabad'],    // North Matlab
+                    'Shahrasti': ['Dakshin Meher', 'Dakshin Raysree', 'Dakshin Suchipara', 'Dakshin Tamta', 'East Chitoshi', 'Uttar Meher', 'Uttar Raysree', 'Uttar Suchipara', 'Uttar Tamta', 'West Chitoshi']
+                }
+            },
+            'chapai nawabganj': {
+                upozilas: {
+                    'Bholahat': ['Bholahat', 'Daldoli', 'Gohalbari', 'Jambaria'],
+                    'Chapainawabganj Municipality': [],
+                    'Chapainawabganj Sadar': ['Alatuli', 'Baliadanga', 'Baroghoria', 'Charaunupnagar', 'Charbagdanga', 'Debinagar', 'Gobratola', 'Islampur', 'Jhilim', 'Moharajpur', 'Narayanpur', 'Ranihati', 'Shahjahanpur', 'Sundarpur'],
+                    'Gomastapur': ['Alinogor', 'Bangabari', 'Boalia', 'Chowdala', 'Gomastapur', 'Parbotipur', 'Radhanogor', 'Rohanpur'],
+                    'Nachole': ['Fatehpur', 'Kosba', 'Nachol', 'Nezampur'],
+                    'Nachole Municipality': [],
+                    'Rohanpur Municipality': [],
+                    'Shibganj': ['Binodpur', 'Chakkirti', 'Chhatrajitpur', 'Daipukuria', 'Dhainagar', 'Durlovpur', 'Ghorapakhia', 'Kansat', 'Mobarakpur', 'Monakasha', 'Noyalavanga', 'Panka', 'Shahbajpur', 'Shyampur', 'Ujirpur'],
+                    'Shibganj Municipality': [],
+                }
+            },
+            'chittagong': {
+                upozilas: {
+                    'Mirsharai': ['Dhum', 'Durgapur', 'Haitkandi', 'Hinguli', 'Ichhakhali', 'Jorarganj', 'Karerhat', 'Katachhara', 'Khaiyachhara', 'Maghadia', 'Mayani', 'Mirsharai', 'Mithanala', 'Osmanpur', 'Saherkhali', 'Wahedpur'],
+                    'Fatikchhari': ['Abdullapur', 'Bagan Bazar', 'Bhujpur', 'Bokhtapur', 'Dantmara', 'Dharmapur', 'Fatikchhari Municipality', 'Harualchari', 'Jafathagar', 'Kanchannagor', 'Khiram', 'Lelang', 'Nanupur', 'Narayanhat', 'Nazirhat Municipality', 'Paindong', 'Roshangiri', 'Samitirhat', 'Suabil', 'Sunderpur'],
+                    'Sandwip': ['Amanullah', 'Azimpur', 'Bauria', 'Digghapar', 'Gachhua', 'Haramia', 'Harispur', 'Kalapania', 'Magdhara', 'Maitbhanga', 'Musapur', 'Rahmatpur', 'Santoshpur', 'Sarikait', 'Urirchar'],
+                    'Sitakunda': ['Kumira', 'Banshbaria', 'Barabkunda', 'Bariadyala', 'Bhatiari', 'Muradpur', 'Salimpur', 'Saidpur', 'Sonaichhari'],
+                    'Hathazari': ['Burirchar', 'Chhibatali', 'Chikandandi', 'Dhalai', 'Fatehpur', 'Forhadabad', 'Garduara', 'Gumanmardan', 'Hathazari', 'Mekhal', 'Mirzapur', 'Nangalmora', 'North Madarsha', 'Shikarpur', 'South Madarsha'],
+                    'Raozan': ['Bagoan', 'Binajuri', 'Chikdair', 'Dabua', 'Gahira', 'Haladia', 'Kadalpur', 'Noajispur', 'Noapara', 'Pahartali', 'Paschim Guzara', 'Purba Guzara', 'Raozan', 'Urkirchar'],
+                    'Rangunia': ['Betagi', 'Chandraghona', 'Dakshin Rajanagar', 'Hosnabad', 'Islampur', 'Kodala', 'Lalanagar', 'Mariumnagar', 'Padua', 'Parua', 'Pomara', 'Rajanagar', 'Rangunia', 'Sharafbhata', 'Silak'],
+                    'Karnaphuli': ['Bara Uthan', 'Char Lakhya', 'Char Patharghata', 'Juldha', 'Shikalbaha'],
+                    'Boalkhali': ['Ahla Karaldenga', 'Amuchia', 'Charandwip', 'Kandhurkhil', 'Paschim Gamdandi', 'Popadia', 'Sakpura', 'Saroatali', 'Sreepur Kharandwip'],
+                    'Patiya': ['Asia', 'Bara Uthan', 'Baralia', 'Bhatikhain', 'Chanhara', 'Char Lakshya', 'Char Patharghata', 'Dakshin Bhurshi', 'Dhalghat', 'Habilasdwip', 'Haidgaon', 'Janglukhain', 'Jiri', 'Juldha', 'Kachuai', 'Kasiais', 'Kelishahar', 'Kharana', 'Kolagaon', 'Kusumpura', 'Sikalbaha', 'Sobhandandi'],
+                    'Anwara': ['Anowara', 'Bairag', 'Barakhain', 'Barasat', 'Burumchhara', 'Battali', 'Chatari', 'Haildhar', 'Juidandi', 'Paraikora', 'Roypur'],
+                    'Chandanaish': ['Bailtali', 'Barama', 'Barkal', 'Chandanaish Municipality', 'Dhopachhari', 'Dohazari', 'Dohazari Municipality', 'Hashimpur', 'Joara', 'Kanchanabad', 'Satbaria'],
+                    'Satkania': ['Amilaisi', 'Bazalia', 'Charati', 'Dharmapur', 'Dhemsa', 'Eochia', 'Kaliais', 'Kanchana', 'Keochia', 'Khagaria', 'Madarsha', 'Nalua', 'Paschim Dhemsa', 'Purangor', 'Sadaha', 'Satkania', 'Sonakania'],
+                    'Banshkhali': ['Baharchhara', 'Bailchhari', 'Chambal', 'Chhanua', 'Gandamara', 'Kalipur', 'Katharia', 'Khankhanabad', 'Pukuria', 'Puichhari', 'Sadhanpur', 'Saral', 'Sekherkhil', 'Silkup'],
+                    'Lohagara': ['Adhunagar', 'Amirabad', 'Barahatia', 'Charamba', 'Chunati', 'Kalauzan', 'Lohagara', 'Padua', 'Putibila']
+                }
+            },
+            'chuadanga': {
+                upozilas: {
+                    'Chuadanga Sadar': ['Alukdia', 'Begumpur', 'Kutubpur', 'Mominpur', 'Padmabila', 'Shankar Chandra', 'Titudah'], 
+                    'Alamdanga': ['Ailhash', 'Baradi', 'Belgachi', 'Bhangbaria', 'Chitla', 'Dauki', 'Gagni', 'Hardi', 'Jamjami', 'Jehala', 'Kalidashpur', 'Khadimpur', 'Khashkorara', 'Kumari', 'Nagdah'],
+                    'Jibannagar': ['Andulbaria', 'Banka', 'Hasadah', 'KDK', 'Raypur', 'Shimanto', 'Uthali'],
+                    'Damurhuda': ['Damurhuda', 'Hawli', 'Juranpur', 'Karpashdanga', 'Kurulgachhi', 'Natipota', 'Perkrishnopur Madna']
+                }
+            },
+            'comilla': {
+                upozilas: {
+                    'Barura': ['Adda', 'Adra', 'Aganagar', 'Bhabanipur', 'Chitodda', 'Dakshin Khoshbas', 'Dakshin Shilmuri', 'Galimpur', 'Jhalam', 'Laxmipur', 'Payalgacha', 'Shakpur', 'Uttar Khoshbas', 'Uttar Shilmuri', 'Vauksar'],
+                    'Brahmanpara': ['Brahmanpara', 'Chandla', 'Dulalpur', 'Madhabpur', 'Malapara', 'Shahebabad', 'Shashidal', 'Shidli'  ],
+                    'Burichong': ['Mokam', 'Bakshimul', 'Burichang', 'Moynamoti', 'Pirjatrapur', 'Rajapur', 'Sholonal', 'Varella'  ],
+                    'Comilla Sadar': ['Amratoli', 'Comilla Cantonment', 'Dakshin Durgapur', 'Jagannathpur', 'Kalir Bazar', 'Panchthubi', 'Uttar Durgapur'],
+                    'Comilla Sadar Dakshin': [],
+                    'Chandina': [],
+                    'Chauddagram': [],
+                    'Daudkandi': [],
+                    'Debidwar': [],
+                    'Homna': [],
+                    'Laksam': [],
+                    'Lalmai': [],
+                    'Monohorgonj': [],
+                    'Meghna': [],
+                    'Muradnagar': [],
+                    'Nangalkot': [],
+                    'Titas': []
+                }
+            },
+            'cox\'s bazar': {
+                upozilas: {
+                    'Kutubdia': ['Ali Akbardeil', 'Baraghop', 'Dakshin Dhurung', 'Kaiyarbil', 'Lemsikhali', 'Uttar Dhurung'],
+                    'Pekua': ['Barabakia', 'Magnama', 'Pekua', 'Rajakhali', 'Shilkhali', 'Taitong', 'Ujantia'],
+                    'Maheshkhali': ['Bara Maheshkhali', 'Chota Moheshkhali', 'Dhalghata', 'Hoanak', 'Kalarmarchhara', 'Kutubjom', 'Matarbari', 'Saflapur'],
+                    'Chakaria': ['Badarkhali', 'Bamo Bilchari', 'Baraitali', 'Bheola Manikchar', 'Chiringa', 'Demusia', 'Dulahazara', 'Fashiakhali', 'Harbang', 'Kaiarbil', 'Kakhara', 'Khuntakhali', 'Konakhali', 'Lakhyarchar', 'Paschim Bara Bheola', 'Purba Bara Bheola', 'Saharbil', 'Surajpur-Manikpur'],
+                    'Cox\'s Bazar Sadar': ['Chowfaldandi', 'Eidgaon', 'Islamabad', 'Islampur', 'Jalalabad', 'Jhilongjha', 'Khurushkhul', 'Pmkhali', 'Pokkhali', 'Varuakhali'],
+                    'Eidgaon': ['Eidgaon Union', 'Islamabad Union', 'Islampur Union', 'Jalalabad Union', 'Pokkhali Union'], 
+                    'Ramu': ['Chakmarkul', 'Dakshin Mithachhari', 'Eidghar', 'Fotekharkul', 'Garjoniya', 'Jouarianala', 'Kacchapia', 'Kawarkhop', 'Khuniapalong', 'Rajarkul', 'Rashidnagar'],
+                    'Ukhia': ['Holdia Palong', 'Jalia Palong', 'Palong Khali', 'Raja Palong', 'Ratna Palong'],
+                    'Teknaf': ['Baharchara', 'Nhila', 'Sabrang', 'Saint Martin', 'Teknaf', 'Whykong']
+                }
+            },
+            'dhaka': {
+                upozilas: {
+                    'Dhamrai': ['Amta', 'Baisakanda', 'Balia', 'Bhararia', 'Chauhat', 'Dhamrai', 'Gangutia', 'Jadabpur', 'Kulla', 'Kushura', 'Nannar', 'Rowail', 'Sanora', 'Sombhog', 'Suapur', 'Sutipara'],
+                    'Dohar': ['Bilaspur', 'Kushumhati', 'Mahmudpur', 'Muksudpur', 'Narisha', 'Nayabari', 'Roypara', 'Sutarpara'],
+                    'Keraniganj': ['Aganagar', 'Basta', 'Hazratpur', 'Kalatia', 'Kalindi', 'Konda', 'Ruhitpur', 'Sakta', 'Subhadya', 'Taranagar', 'Tegharia', 'Zinjira'],
+                    'Nawabganj': ['Agla', 'Bakshanagar', 'Bandura', 'Barrah', 'Baruakhali', 'Churain', 'Galimpur', 'Jantrail', 'Joykrishnapur', 'Kailail', 'Kalakopa', 'Nayansree', 'Shekaripara', 'Sholla'],
+                    'Savar': ['Aminbazar', 'Ashulia', 'Banogram', 'Bhakurta', 'Birulia', 'Dhamsona', 'Kaundia', 'Pathalia', 'Savar', 'Shimulia', 'Tetuljhora', 'Yearpur']
+                }
+            },
+            'dinajpur': {
+                upozilas: {
+                    'Biral': ['Azimpur', 'Bhandra', 'Biral', 'Bijora', 'Dhamoir', 'Dharmapur', 'Farakkabad', 'Mangalpur', 'Ranipukur', 'Shohorgram'],
+                    'Birampur': ['Benail', 'Birampur Municipality', 'Dior', 'Jotbani', 'Katla', 'Khanpur', 'Mukundapur', 'Pali Prayagpur'  ],
+                    'Birganj': ['Bhognagar', 'Mohammadpur', 'Mohonpur', 'Moricha', 'Nijpara', 'Paltapur', 'Polashbari', 'Sator', 'Shatagram', 'Shibrampur', 'Sujalpur'],
+                    'Bochaganj': ['Atgaon', 'Eshania', 'Murshidhat', 'Nafanagar', 'Rongaon', 'Shatail'],
+                    'Chirirbandar': ['Abdulpur', 'Alokdihi', 'Amarpur', 'Auliapukur', 'Fatejangpur', 'Isobpur', 'Nashratpur', 'Punotti', 'Saitara', 'Satnala', 'Tetulia', 'Viail'],
+                    'Dinajpur Sadar': ['Askorpur', 'Auliapur', 'Chealgazi', 'Dinajpur Municipality', 'Fazilpur', 'Kamalpur', 'Sankarpur', 'Shashora', 'Shekpura', 'Sundorbon', 'Uthrail'],
+                    'Ghoraghat': ['Bulakipur', 'Ghoraghat', 'Ghoraghat Municipality', 'Palsa', 'Singra'],
+                    'Hakimpur': ['Alihat', 'Boalder', 'Hakimpur Municipality', 'Khattamadobpara'],
+                    'Kaharole': ['Dabor', 'Mukundapur', 'Ramchandrapur', 'Rasulpur', 'Sundarpur', 'Targaon'],
+                    'Khansama': ['Alokjhari', 'Angarpara', 'Bhabki', 'Bherbheri', 'Goaldihi', 'Khamarpara'],
+                    'Nawabganj': ['Bhaduria', 'Binodnagar', 'Daudpur', 'Golapgonj', 'Joypur', 'Kushdaha', 'Mahmudpur', 'Putimara', 'Shalkhuria'],
+                    'Parbatipur': ['Belaichandi', 'Chandipur', 'Habra', 'Hamidpur', 'Harirampur', 'Mominpur', 'Monmothopur', 'Mostofapur', 'Polashbari', 'Rampur'],
+                    'Fulbari': ['Aladipur', 'Aloary', 'Bethdighi', 'Daulatpur', 'Fulbari', 'Kazihal', 'Khairbari', 'Shibnagor']
+                }
+            },
+            'faridpur': {
+                upozilas: {
+                    'Alfadanga': ['Alfadanga', 'Bana', 'Buraich', 'Gopalpur', 'Pachuria', 'Tagarband'],
+                    'Bhanga': ['Algi', 'Azimnagor', 'Bhanga', 'Chandra', 'Chumurdi', 'Gharua', 'Hamirdi', 'Kalamridha', 'Kawlibera', 'Manikdha', 'Nasirabad', 'Nurullagonj', 'Tujerpur'],
+                    'Boalmari': ['Boalmari', 'Boalmari Municipality', 'Chandpur', 'Chatul', 'Dadpur', 'Ghoshpur', 'Gunbaha', 'Moyna', 'Parameshwardi', 'Rupapat', 'Satair', 'Shekhar'],
+                    'Charbhadrasan': ['Char Harirampur', 'Char Jahukanda', 'Charbhadrasan', 'Gazirtek'],
+                    'Faridpur Sadar': ['Aliabad', 'Ambikapur', 'Char Madhabdia', 'Decreer Char', 'Faridpur Municipality', 'Greda', 'Ishan Gopalpur', 'Kaijuri', 'Kanaipur', 'Krishnanagar', 'Maj Char', 'Uttar Channel'], 
+                    'Madhukhali': ['Bagat', 'Dumain', 'Gazna', 'Jahapur', 'Kamarkhali', 'Madhukhali', 'Megchami', 'Nowpara', 'Raipur'],
+                    'Nagarkanda': ['Char Jashordi', 'Dangi', 'Fulsuti', 'Kaichail', 'Kodalia Shohid Nagar', 'Laskardia', 'Nagarkanda Municipality', 'Purapara', 'Ramnagar', 'Talma'],
+                    'Sadarpur': ['Akter Char', 'Bhashanchar', 'Char Bishnupur', 'Char Manair', 'Char Nasirpur', 'Dheukhali', 'Krishnapur', 'Narikelbaria', 'Sadarpur'],
+                    'Saltha': ['Atghar', 'Ballabhdi', 'Bhawal', 'Gatti', 'Jadunandi', 'Mazardia', 'Ramkantapur', 'Sonapur']
+                }
+            },
+            'feni': {
+                upozilas: {
+                    'Chhagalnaiya': ['Chhagalnaiya Municipality', 'Gopal', 'Mohamaya', 'Pathan gar', 'Radhanagar', 'Shubhapur'],
+                    'Daganbhuiyan': ['Daganbhuiyan', 'Daganbhuiyan Municipality', 'Jayloskor', 'Matubhuiyan', 'Purba Chandrapur', 'Rajapur', 'Ramnagar', 'Sindurpur', 'Yeakubpur'],
+                    'Feni Sadar': ['Baligaon', 'Chonua', 'Dholia', 'Dhormapur', 'Fazilpur', 'Feni Municipality', 'Forhadnogor', 'Kalidah', 'Kazirbag', 'Lemua', 'Motobi', 'Panchgachia', 'Sarishadi'],
+                    'Fulgazi': ['Amzadhat', 'Anandopur', 'Dorbarpur', 'Fulgazi', 'G.M. Hat', 'Munshirhat'],
+                    'Parshuram': ['Boxmahmmud', 'Chitholia', 'Mirzanagar', 'Parshuram Municipality'],
+                    'Sonagazi': ['Amirabad', 'Bogadana', 'Char Chandia', 'Char Dorbesh', 'Char Majlishpur', 'Mangalkandi', 'Motigonj', 'Nababpur', 'Sonagazi', 'Sonagazi Municipality']
+                }
+            },
+            'gaibandha': {
+                upozilas: {
+                    'Fulchhari': ['Erendabari', 'Fazlupur', 'Gazaria', 'Kanchipara', 'Phulchari', 'Udakhali', 'Uria'],
+                    'Gaibandha Sadar': ['Badiakhali', 'Ballamjhar', 'Boali', 'Gaibandha Municipality', 'Ghagoa', 'Gidari', 'Kamarjani', 'Kholahati', 'Kuptola', 'Laxmipur', 'Malibari', 'Mollarchar', 'Ramchandrapur', 'Shahapara'],
+                    'Gobindaganj': ['Kamdia', 'Katabari', 'Darbosta', 'Fulbari', 'Gobindaganj Municipality', 'Gumanigonj', 'Harirampur', 'Kamardaha', 'Kocha Shahar', 'Mahimaganj', 'Nakai', 'Rakhalbururz', 'Razahar', 'Shakhahar', 'Shalmara', 'Shibpur', 'Taluk Kanupur'],
+                    'Palashbari': ['Barisal', 'Betkapa', 'Harinathpur', 'Hossainpur', 'Kishoregari', 'Mohdipur', 'Monohorpur', 'Palashbari Municipality', 'Pobnapur'],
+                    'Sadullapur': ['Bongram', 'Damodorpur', 'Dhaperhat', 'Faridpur', 'Idilpur', 'Jamalpur', 'Kamarpara', 'Khodkomor', 'Noldanga', 'Rasulpur', 'Vatgram'],
+                    'Sundarganj': ['Bamondanga', 'Belka', 'Chandipur', 'Chaporhati', 'Dohbond', 'Dhopadanga', 'Haripur', 'Kapasia', 'Konchibari', 'Ramjibon', 'Shantiram', 'Sorbanondo', 'Sonaroy', 'Sreepur', 'Sundarganj Municipality', 'Tarapur'],
+                    'Saghata': ['Bonarpara', 'Ghuridah', 'Holdia', 'Jumarbari', 'Kachua', 'Kamalerpara', 'Muktinagar', 'Padumsahar', 'Saghata', 'Varotkhali']
+                }
+            },
+            'gazipur': {
+                upozilas: {
+                    // 'Gazipur City Corporation': [],
+                    'Gazipur Sadar': ['Baria', 'Bhaowal Gar', 'Mirzapur', 'Pirujali'],
+                    'Kaliakair': ['Atabaha', 'Boali', 'Chapair', 'Dhaljora', 'Fulbari', 'Kaliakair Municipality', 'Madhayapara', 'Mouchak', 'Sreefaltali', 'Sutrapur'],
+                    'Kapasia': ['Barishab', 'Chandpur', 'Durgapur', 'Ghagotia', 'Kapasia', 'Karihata', 'Rayed', 'Sinhasree', 'Sonmania', 'Targoan', 'Tokh'],
+                    'Sreepur': ['Barmi', 'Gazipur', 'Gosinga', 'Kaoraid', 'Maona', 'Prahladpur', 'Rajabari', 'Sreepur Municipality', 'Telihati'],
+                    'Kaliganj': ['Baktarpur', 'Bhadursadi', 'Jamalpur', 'Jangalia', 'Kaliganj Municipality', 'Moktarpur', 'Nagari', 'Tumulia']
+                }
+            },
+            'gopalganj': {
+                upozilas: {
+                    'Gopalganj Sadar': ['Borasi', 'Baultali', 'Chandra Dighalia', 'Durgapur', 'Gobra', 'Gopinathpur', 'Gopalganj Municipality', 'Haridaspur', 'Jalalabad', 'Kajulia', 'Karpara', 'Kati', 'Latifpur', 'Majhigati', 'Nizra', 'Paikkandi', 'Raghunathpur', 'Sahapur', 'Satpar', 'Suktail', 'Ulpur', 'Upafi'],
+                    'Kashiani': ['Bethuri', 'Hataira', 'Kashiani', 'Mahespur', 'Mamudpur', 'Nijamkandi', 'Orakandi', 'Parulia', 'Puisur', 'Pukra', 'Rajpat', 'Ratail', 'Sajail', 'Singa'],
+                    'Kotalipara': ['Amtali', 'Bandhabari', 'Ghagar', 'Hiran', 'Kalabari', 'Kandi', 'Kotalipara Municipality', 'Kushla', 'Pinjuri', 'Radhaganj', 'Ramshil', 'Sadullapur', 'Suagram'],
+                    'Muksudpur': ['Bahugram', 'Banshbaria', 'Batikamari', 'Bhabrasur', 'Dignagar', 'Gobindapur', 'Gohala', 'Jalirpar', 'Kasalia', 'Khandarpur', 'Maharajpur', 'Mochna', 'Muksudpur Municipality', 'Nanikshir', 'Pasargati', 'Raghdi', 'Ujani'],
+                    'Tungipara': ['Barni', 'Dumuria', 'Gopalpur', 'Kushli', 'Patgati', 'Tungipara Municipality'] 
+                }
+            },
+            'habiganj': {
+                upozilas: {
+                    'Ajmiriganj': ['Ajmiriganj', 'Ajmiriganj Municipality', 'Badalpur', 'Jolsuka', 'Kakailsao', 'Shibpasha'],
+                    'Baniachang': ['Baraiuri', 'Dakshin Paschim Baniachong', 'Dakshin Purba Baniachong', 'Daulatpur', 'Kagapasha', 'Khagaura', 'Makrampur', 'Mandari', 'Muradpur', 'Pailar Kandi', 'Pukhra', 'Sujatpur', 'Subidpur', 'Uttar Paschim Baniachong', 'Uttar Purba Baniachong'],
+                    'Bahubal': ['Bahubal', 'Bhadeshwar', 'Lamatashi', 'Mirpur', 'Putijuri', 'Satkapan', 'Snanghat'],
+                    'Chunarughat': ['Ahmadabad', 'Chunarughat', 'Chunarughat Municipality', 'Deorgachh', 'Gazipur', 'Mirashi', 'Paikpara', 'Ranigaon', 'Shankhala', 'Shatiajuri', 'Ubahata'],
+                    'Habiganj Sadar': ['Gopaya', 'Habiganj Municipality', 'Laskerpur', 'Lukra', 'Nijampur', 'Nurpur', 'Poil', 'Rajiura', 'Richi', 'Shayestaganj', 'Shayestaganj Municipality', 'Teghoria'],
+                    'Lakhai': ['Bamai', 'Bulla', 'Karab', 'Lakhai', 'Murakari', 'Muriauk'],
+                    'Madhabpur': ['Adaoir', 'Andiura', 'Bagashura', 'Bahra', 'Bulla', 'Chhatiain', 'Choumohani', 'Dharmaghar', 'Jagadishpur', 'Madhabpur Municipality', 'Noapara', 'Shahjahanpur'],
+                    'Nabiganj': ['Aushkandi', 'Bausha', 'Debparra', 'Digholbak', 'Gaznaipur', 'Inatganj', 'Kaliarbhanga', 'Kargoan', 'Kurshi', 'Nabiganj Sadar', 'Paniumda', 'Paschim Bara Bhakoir', 'Purba Bara Bhakoir'],
+                    'Shaistaganj': ['Brahmandura', 'Nurpur', 'Shayestaganj', 'Shayestaganj Municipality']
+                }
+            },
+            'jamalpur': {
+                upozilas: {
+                    'Dewanganj': ['Bahadurabad', 'Char Aomkhaoa', 'Chikajani', 'Chukaibari', 'Dangdhara', 'Dewanganj', 'Dewanganj Municipality', 'Hatebhanga', 'Par Ramrampur'],
+                    'Baksiganj': ['Bagarchar', 'Bakshiganj', 'Battajore', 'Danua', 'Merurchar', 'Nilakhia', 'Shadhurpara'],
+                    'Islampur': ['Belghacha', 'Char Gualini', 'Char Putimari', 'Chinaduli', 'Gaibandha', 'Gualerchar', 'Islampur', 'Islampur Municipality', 'Kulkandi', 'Noarpara', 'Palabandha', 'Partharshi', 'Shapdari'],
+                    'Jamalpur Sadar': ['Banshchara', 'Digpaith', 'Ghoradhap', 'Itail', 'Jamalpur Municipality', 'Kendua', 'Lakshmir Char', 'Meshta', 'Narundi', 'Ranagachha', 'Rashidpur', 'Sahabajpur', 'Sharifpur', 'Sreepur', 'Titpalla', 'Tulsir Char'],
+                    'Madarganj': ['Adarvita', 'Balijuri', 'Char Pakerdah', 'Gunaritala', 'Jorekhali', 'Karaichara', 'Madarganj Municipality', 'Sidhuli'],
+                    'Melandaha': ['Adra', 'Char Banipakuri', 'Durmot', 'Fulkocha', 'Ghuserpara', 'Jhaughara', 'Kulia', 'Mahmudpur', 'Melandaha Municipality', 'Nangla', 'Nayanagar', 'Shuampur'],
+                    'Sarishabari': ['Aona', 'Bhatara', 'Doail', 'Kamrabad', 'Mahadan', 'Pingna', 'Pogaldigha', 'Sarishabari Municipality', 'Satpoa']
+                }
+            },
+            'jashore': {
+                upozilas: {
+                    'Abhaynagar': ['Abhaynagar Municipality', 'Baghutia', 'Chalishia', 'Payra', 'Prambag', 'Siddhipasha', 'Sreedharpur', 'Subha Para', 'Sundoli'],
+                    'Bagherpara': ['Bagherpara Municipality', 'Bandabilla', 'Basuari', 'Darajhat', 'Dhalgram', 'Dohakula', 'Jaharpur', 'Jamdia', 'Narikelbaria', 'Roypur'],
+                    'Chaugachha': ['Chaugachha', 'Chaugachha Municipality', 'Dhuliani', 'Hakimpur', 'Jagadishpur', 'Narayanpur', 'Pashapole', 'Patibila', 'Phulsara', 'Singhajhuli', 'Sukpukhuria', 'Swarupdaha'],
+                    'Jessore Sadar': ['Arabpur', 'Basundia', 'Chanchra', 'Churamankati', 'Diara', 'Fathehpur', 'Haibatpur', 'Ichhali', 'Jessore Cantonment', 'Jessore Municipality', 'Kachua', 'Kashimpur', 'Lebutala', 'Narendrapur', 'Noapara', 'Ramnagar', 'Upashahar'],
+                    'Jhikargachha': ['Bankra', 'Ganganandapur', 'Godkhali', 'Hajirbagh', 'Jhikargacha Municipality', 'Jhikargachha', 'Magura', 'Navaron', 'Nirbashkhola', 'Panishara', 'Shankarpur', 'Shimulia'],
+                    'Keshabpur': ['Bidyanandakati', 'Gaurighona', 'Hasanpur', 'Keshabpur', 'Keshabpur Municipality', 'Majidpur', 'Mongolkot', 'Pajia', 'Sagardari', 'Satbaria', 'Sufalakati', 'Trimohoni'],
+                    'Manirampur': ['Bhojgati', 'Chaluahati', 'Dhakuria', 'Durbadanga', 'Haridaskati', 'Hariharnagar', 'Jhanpa', 'Kashimnagar', 'Khanpur', 'Khedapara', 'Kultia', 'Manirampur', 'Manirampur Municipality', 'Manoharpur', 'Maswimnagar', 'Nehalpur', 'Rohita', 'Shyamkur'],
+                    'Sharsha': ['Bagachra', 'Bahadurpur', 'Benapole', 'Benapole Municipality', 'Dihi', 'Goga', 'Kayba', 'Lakshmanpur', 'Nizampur', 'Putkhali', 'Sharsha', 'Ulashi']
+                }
+            },
+           
+
+
+
+            'jhalokati': {
+                upozilas: {
+                    'Jhalokati Sadar': ['Basanda', 'Binoykati', 'Gabharamchandrapur', 'Gabkhandhansiri', 'Jhalakati Municipality', 'Keora', 'Kirtipasha', 'Nabagram', 'Nathullabad', 'Ponabalia', 'Sekherhat'],
+                    'Kathalia': ['Amua', 'Awrabunia', 'Chenchri Rampur', 'Kanthalia', 'Patikhalghata', 'Sauljalia'],
+                    'Nalchity': ['Bhairabpasha', 'Dapdapia', 'Kulkathi', 'Kusanghal', 'Mollarhat', 'Magar', 'Nachan Mohal', 'Ranapasha', 'Siddhakati', 'Subidpur'],
+                    'Rajapur': ['Galuya', 'Boroiya', 'Mathbari', 'Rajapur', 'Saturia', 'Suktagor']
+                }
+            },
+            'jhenaidah': {
+                upozilas: {
+                    'Harinakunda': ['Bhayna', 'Chandpur', 'Daulatpur', 'Falsi', 'Joradah', 'Kapashatia', 'Raghunathpur', 'Taherhuda'],
+                    'Jhenaidah Sadar': ['Dogachi', 'Fursondi', 'Ganna', 'Ghorshal', 'Halidhani', 'Harishongkorpur', 'Kalicharanpur', 'Kumrabaria', 'Maharazpur', 'Modhuhati', 'Naldanga', 'Padmakar', 'Paglakanai', 'Porahati', 'Sadhuhati', 'Saganna', 'Surat'],
+                    'Kaliganj': ['Baro Bazar', 'Jamal', 'Kashtabhanga', 'Kola', 'Maliat', 'Niamatpur', 'Raygram', 'Rakhalgachi', 'Shimla-Rokonpur', 'Sundarpur-Durgapur', 'Trilochanpur'],
+                    'Kotchandpur': ['Alangi', 'Baluhar', 'Dauda', 'Kushna', 'Subdalpur'],
+                    'Maheshpur': ['Azampur', 'Banshbaria', 'Fatepur', 'Jadabpur', 'Kazirber', 'Mandarbaria', 'Natima', 'Nepa', 'S.B.K', 'Panthapara', 'Shyamkur', 'Swaruppur'],
+                    'Shailkupa': ['Abaipur', 'Bogura', 'Dignagore', 'Dhaloharachandra', 'Dudshar', 'Fulhari', 'Hakimpur', 'Kancherkol', 'Manoharpur', 'Mirzapur', 'Nityanandapur', 'Sarutia', 'Tribeni', 'Umedpur']
+                }
+            },
+            'joypurhat': {
+                upozilas: {
+                    'Akkelpur': ['Gopinathpur', 'Roykali', 'Rukindipur', 'Sonamukhi', 'Tilakpur'],
+                    'Joypurhat Sadar': ['Amdoi', 'Banbu', 'Chakbarkat', 'Bhadsa', 'Dhalahar', 'Dogachhi', 'Jamalpur', 'Mohammadabad', 'Puranapoil'],
+                    'Kalai': ['Matrai', 'Punat', 'Udaypur', 'Zindarpur', 'Ahmmadabad'],
+                    'Khetlal': ['Alampur', 'Baratara', 'Barail', 'Khetlal', 'Mamudpur'],
+                    'Panchbibi': ['Awlai', 'Atapur', 'Ayma Rasulpur', 'Bagjana', 'Balighata', 'Dharanji', 'Kusumba', 'Mohammudpur']
+                }
+            },
+            'khagrachhari': {
+                upozilas: {
+                    'Dighinala': ['Babuchara', 'Baghaihat', 'Dighinala', 'Kalenga', 'Logo Chara', 'Merung'],
+                    'Guimara': ['Battali', 'Gudumchara', 'Guimara'],
+                    'Khagrachhari Sadar': ['Bhaibonchhara', 'Golabari', 'Kamalchhari', 'Khagrachhari', 'Perachhara'],
+                    'Lakshmichhari': ['Bangalhalia', 'Dullyatali', 'Kamalichhari', 'Lakshmichhari'],
+                    'Mahalchhari': ['Kabakhali', 'Mahalchhari', 'Mobachhari', 'Tainchyong'],
+                    'Manikchhari': ['Batnatali', 'Jogyachola', 'Manikchhari', 'Tintila'],
+                    'Matiranga': ['Amtali', 'Matiranga', 'Taindong'],
+                    'Panchhari': ['Babupara', 'Latiban', 'Panchhari', 'Taracha'],
+                    'Ramgarh': ['Hafchhari', 'Patachara', 'Ramgarh']
+                }
+            },
+            'khulna': {
+                upozilas: {
+                    'Batiaghata': ['Amirpur', 'Baliadanga', 'Batiaghata', 'Bhandarkot', 'Gangarampur', 'Jalma', 'Surkhali'],
+                    'Dacope': ['Bajua', 'Banishanta', 'Kailashganj', 'Kamarkhola', 'Loudob', 'Pankhali', 'Sutarkhali', 'Tildanga'],
+                    'Dighalia': ['Aranghata', 'Barakpur', 'Dighalia', 'Gazirhat', 'Jogipol', 'Senhati'],
+                    'Dumuria': ['Atalia', 'Bhandarpara', 'Dhamaliya', 'Dumuria', 'Gutudia', 'Kharnia', 'Maguraghona', 'Magurkhali', 'Raghunathpur', 'Rangpur', 'Rudaghara', 'Sahos', 'Sharafpur', 'Shovna'],
+                    'Koyra': ['Amadi', 'Bagali', 'Dakshin Bedkashi', 'Koyra', 'Moharajpur', 'Moheswaripur', 'Uttar Bedkashi'],
+                    'Paikgachha': ['Chandkhali', 'Deluti', 'Garaikhali', 'Godaipur', 'Haridhali', 'Kapilmuni', 'Lashkar', 'Lata', 'Raruli', 'Soladana'],
+                    'Phultala': ['Atra Gilatala', 'Damodor', 'Jamira', 'Phultala'],
+                    'Rupsa': ['Aichgati', 'Ghatvog', 'Naihati', 'Shrifaltala', 'TSB'],
+                    'Terokhada': ['Ajgara', 'Barasat', 'Chagladoho', 'Chasiadaho', 'Madhupur', 'Terokhada']
+                }
+            },
+            'kishoreganj': {
+                upozilas: {
+                    'Austagram': ['Adampur', 'Austagram', 'Bagdha', 'Bangalpara', 'Kalkalia', 'Khayerpur Abdullahpur', 'Phuldia', 'Purba Austagram'],
+                    'Bajitpur': ['Bajitpur', 'Dilalpur', 'Mahamudpur', 'Mamudpur', 'Narandi', 'Patuavabga', 'Rezapur', 'Sararchar', 'Shahed Ali', 'Shikarpur', 'Zeanganj'],
+                    'Bhairab': ['Agradwip', 'Agar', 'Bhairab', 'Paratoli', 'Sadekpur', 'Sadipur', 'Taldi'],
+                    'Hossainpur': ['Chhoysuti', 'Cikatia', 'Hossainpur', 'Latibabad', 'Niamatpur', 'Osmanpur'],
+                    'Itna': ['Buddhanagar', 'Dhaki', 'Gorai', 'Itna', 'Kaitali', 'Piyariatoli', 'Rauti', 'Sidhla', 'Warinagar'],
+                    'Karimganj': ['Bargaria', 'Dehunda', 'Gunodhar', 'Gujadia', 'Jafrabade', 'Jaika', 'Kadirjangal', 'Kiraton', 'Niyamatpur', 'Noabad', 'Sutarpara'],
+                    'Katiadi': ['Arra', 'Baramchal', 'Gujra', 'Jangalia', 'Katiadi', 'Kirttipasha', 'Maizchar', 'Osmania', 'Turiganj'],
+                    'Kishoreganj Sadar': ['Binnati', 'Bowlai', 'Chauddasata', 'Dana Patuli', 'Jasodal', 'Korsha Kariail', 'Latibabad', 'Mahinanda', 'Maij Khapan', 'Maria', 'Rashidabad'],
+                    'Kuliarchar': ['Balithuba', 'Gouriyakandi', 'Homypur', 'Kadla', 'Kuliarchar', 'Markuli'],
+                    'Mithamain': ['Ghere', 'Gobindapur', 'Heberchar', 'Karshakolakandia', 'Mithamain', 'Sadaha', 'Saydpur'],
+                    'Nikli': ['Boilor', 'Chinishpur', 'Damiha', 'Gararbag', 'Jaria', 'Karpasa', 'Singpur'],
+                    'Pakundia': ['Amua', 'Chardarbeshkandia', 'Egaro Sindur', 'Hosendi', 'Jantrapur', 'Omarabad', 'Pakundiya', 'Salua', 'Usmanpur'],
+                    'Tarail': ['Algi', 'Dighankata', 'Hajrapur', 'Jinari', 'Narail', 'Palash', 'Tarail']
+                }
+            },
+            'kurigram': {
+                upozilas: {
+                    'Bhurungamari': ['Andharijhar', 'Bangasonahat', 'Bhurungamari', 'Boldia', 'Charbhurungamari', 'Joymanirhat', 'Paikerchhara', 'Pathardubi', 'Shilkhuri', 'Tilai'],
+                    'Char Rajibpur': ['Kodalkati', 'Mohanganj', 'Rajibpur'],
+                    'Chilmari': ['Ashtamirchar', 'Chilmari', 'Nayarhat', 'Ramna', 'Raniganj', 'Thanahat'],
+                    'Kurigram Sadar': ['Belgachha', 'Bhogdanga', 'Ghogadaha', 'Holukhan', 'Jatrapur', 'Kathalbari', 'Mogalbasa', 'Panchgachhi'],
+                    'Nageshwari': ['Ballaverkhas', 'Bamandanga', 'Berubari', 'Bhitarband', 'Hasnabad', 'Kachakata', 'Kaliganj', 'Kedar', 'Narayanpur', 'Newashi', 'Noonkhawa', 'Ramkhan', 'Royganj', 'Santoshpur'],
+                    'Phulbari': ['Baravita', 'Bhangamore', 'Fulbari', 'Kashipur', 'Naodanga', 'Shimulbari'],
+                    'Rajarhat': ['Bidyananda', 'Chakirpashar', 'Chhinai', 'Gharialdanga', 'Nazimkhan', 'Rajarhat', 'Umar Majid'],
+                    'Raomari': ['Bandaber', 'Dantbhanga', 'Jadurchar', 'Rowmari', 'Shailmari'],
+                    'Ulipur': ['Begumganj', 'Bazra', 'Buraburi', 'Daldalia', 'Dhamosreni', 'Dharanibari', 'Durgapur', 'Gunaigachh', 'Hatia', 'Pandul', 'Saheber Alga', 'Tabakpur', 'Thetrai']
+                }
+            },
+            'kushtia': {
+                upozilas: {
+                    'Bheramara': ['Bahadurpur', 'Bahir Char', 'Chandgram', 'Dharampur', 'Juniadaha', 'Mokarimpur'],
+                    'Daulatpur': ['Adabaria', 'Aria', 'Boalia', 'Chilmari', 'Daulatpur', 'Hogolbaria', 'Khalishakundi', 'Mathurapur', 'Moricha', 'Piarpur', 'Philipnagar', 'Pragpur', 'Ramkrishnapur', 'Refaitpur'],
+                    'Khoksa': ['Ambaria', 'Betbaria', 'Gopgram', 'Janipur', 'Jayanti Hazra', 'Khoksa', 'Osmanpur', 'Shomospur', 'Shimulia'],
+                    'Kumarkhali': ['Bagulat', 'Chandpur', 'Chapra', 'Charsadipur', 'Jagannathpur', 'Joduboyra', 'Kaya', 'Nandalalpur', 'Panti', 'Shelaidaha', 'Sodki'],
+                    'Kushtia Sadar': ['Alampur', 'Abdolpur', 'Ailchara', 'Bottail', 'Goswamidurgapur', 'Harinarayanpur', 'Hatshharpur', 'Jaudia', 'Jiarki', 'Kanchanpur', 'Manohordiya', 'Patikabari', 'Ujangram'],
+                    'Mirpur': ['Bahlabaria', 'Chitalia', 'Joypatibaria', 'Khidirpur', 'Majhgram', 'Mirzapur', 'Mirpur', 'Panti', 'Ratanpur', 'Shingabaria', 'Talabaria', 'Talbaria', 'Ujankabari']
+                }
+            },
+            'lakshmipur': {
+                upozilas: {
+                    'Kamalnagar': ['Char Algi', 'Char Alexander', 'Hajirhat', 'Ramgatirhat'],
+                    'Lakshmipur Sadar': ['Bangakha', 'Basikpur', 'Bhabaniganj', 'Chandraganj', 'Char Ruhita', 'Charramani Mohan', 'Charshahi', 'Dakshin Hamchadi', 'Dalal Bazar', 'Datta Para', 'Dighali', 'Hajir Para', 'Kushakhali', 'Laharkandi', 'Mandari', 'Parbati Nagar', 'Shak Char', 'Uttar Hamchadi', 'Vobaniganj'],
+                    'Ramganj': ['Alipur', 'Char Kolatia', 'Char Poragacha', 'Dolta', 'Kanchanpur', 'Naagmud', 'Panpara', 'Ramganj'],
+                    'Ramgati': ['Char Abdullahil', 'Char Kadira', 'Char Martin', 'Mohammadpur', 'Ramgati'],
+                    'Raipur': ['Bhuabari', 'Char Folkon', 'Char Madras', 'Char Ramani Mohan', 'Haydarganj', 'Nagerdighirpar', 'Rakhallia', 'Raipur']
+                }
+            },
+            'lalmonirhat': {
+                upozilas: {
+                    'Aditmari': ['Bhadai', 'Durgapur', 'Kamalbari', 'Mahishkhocha', 'Palashi', 'Saptibari', 'Sarpukur', 'Velabari'],
+                    'Hatibandha': ['Barkhata', 'Daubabari', 'Fakirpara', 'Gaddimari', 'Gotamari', 'Nawdabas', 'Patikapara', 'Saniazan', 'Sindurna', 'Singimari', 'Tongvanga', 'Velaguri'],
+                    'Kaliganj': ['Chalvola', 'Chandrapur', 'Dolagram', 'Goral', 'Kakina', 'Madati', 'Tushandara', 'Votmari'],
+                    'Lalmonirhat Sadar': ['Barabari', 'Gokunda', 'Harati', 'Khuniagachh', 'Kulaghat', 'Mahendranagar', 'Mogalhat', 'Panchagram', 'Rajpur'],
+                    'Patgram': ['Baura', 'Burimari', 'Dahagram', 'Jagatber', 'Jongra', 'Kuchlibari', 'Patgram', 'Shrirampur']
+                }
+            },
+
+            
+            'madaripur': {
+                upozilas: {
+                    'Dasar': ['Dasar', 'Bahadurpur', 'Bahergram', 'Jarirpar', 'Kandua', 'Koyaria', 'Shibpur'],
+                    'Kalkini': ['Baligram', 'Charmadbdia', 'Darbeshkathi', 'Duhshar', 'Kalkini', 'Kanaipur', 'Krapa', 'Nabagram'],
+                    'Madaripur Sadar': ['Bahadurpur', 'Chilar Char', 'Dhurail', 'Dudkhali', 'Ghatmajhi', 'Jhaoudi', 'Kalikapur', 'Kandua', 'Khoajpur', 'Kunia', 'Panchkhola', 'Peyarpur', 'Rasti', 'Sirkhara', 'Mithapur'],
+                    'Rajoir': ['Akhkhoja', 'Badarpasha', 'Ishibpur', 'Kabiraj', 'Khaliya', 'Paikshara', 'Rajoir', 'Shikder Pachuria'],
+                    'Shibchar': ['Bandar', 'Bhhandaria', 'Charjanne', 'Janjira', 'Kutubpur', 'Madbarerchar', 'Shibchar', 'Veja', 'Vilokhgi']
+                }
+            },
+            'magura': {
+                upozilas: {
+                    'Magura Sadar': ['Atharokhada', 'Baroilpolita', 'Bogia', 'Chawlia', 'Gopalgram', 'Hazipur', 'Hazrapur', 'Jagdal', 'Kosundi', 'Kuchiamora', 'Moghi', 'Raghobdair', 'Satrijitpur'],
+                    'Mohammadpur': ['Babukhali', 'Balidia', 'Binodpur', 'Digha', 'Mohammadpur', 'Nohata', 'Palashbaria', 'Rajapur'],
+                    'Shalikha': ['Arpara', 'Bunagati', 'Dhaneswargati', 'Gongarampur', 'Shalikha', 'Shatakhali', 'Talkhari'],
+                    'Sreepur': ['Amalsar', 'Dariapur', 'Gayeshpur', 'Kadirpara', 'Nakol', 'Shobdalpur', 'Sreekol', 'Sreepur']
+                }
+            },
+            'manikganj': {
+                upozilas: {
+                    'Daulatpur': ['Arua', 'Baliyera', 'Bhararia', 'Char Madbdia', 'Daulotpur', 'Janjal', 'Kamargaon', 'Kuripara', 'Ramshil'],
+                    'Ghior': ['Baniajure', 'Bartia', 'Barca', 'Dhamsona', 'Ghoyor', 'Nalee', 'Nayabari'],
+                    'Harirampur': ['Boyra', 'Dighulia', 'Harirampur', 'Joyra', 'Karitia', 'Mandakhali', 'Mohadebpur', 'Pargha', 'Satpoa', 'Shibaloy', 'Tewta'],
+                    'Manikganj Sadar': ['Baligram', 'Barangail', 'Betila', 'Dholla', 'Gayabari', 'Gopinathpur', 'Hatipara', 'Manikgonj Sadar', 'Putail', 'Ramkhrishnapur Purba', 'Stabda', 'Ulayel'],
+                    'Saturia': ['Baliati', 'Dhankora', 'Fukurhati', 'Satoria', 'Savar'],
+                    'Shivalaya': ['Aruva', 'Chala', 'Shailkupa', 'Shivalaya', 'Ulayel'],
+                    'Singair': ['Baldhara', 'Champaboti', 'Dayarampur', 'Dhamrai', 'Jamirta', 'Singair', 'Zinaidah']
+                }
+            },
+            'meherpur': {
+                upozilas: {
+                    'Gangni': ['Kathuli', 'Tetulbaria', 'Kazipur', 'Bamondi', 'Monmura', 'Sholotaka', 'Saharbati', 'Dhankhola', 'Raypur'],
+                    'Meherpur Sadar': ['Kutubpur', 'Buripota', 'Amjhupi', 'Amdah', 'Pirojpur'],
+                    'Mujibnagar': ['Dariapur', 'Monkhali', 'Bagoan', 'Mahajonpur']
+                }
+            },
+            'moulvibazar': {
+                upozilas: {
+                    'Barlekha': ['Barlekha', 'Bash Baria', 'Dakshin Shahbajpur', 'Dakshin Srimangal', 'Fatehpur', 'Kalachhara', 'Naya Bazar', 'Uttar Shahbajpur'],
+                    'Juri': ['Fatepur', 'Goalbari', 'Jamirganj', 'Juri', 'Sagarnal'],
+                    'Kamalganj': ['Adampur', 'Alinagar', 'Islampur', 'Kamalganj', 'Madhabpur', 'Munshibazar', 'Pathrakhola', 'Rahimpur', 'Shamshernagar'],
+                    'Kulaura': ['Baralekha', 'Bhukshimul', 'Joychandi', 'Kadipur', 'Kamalganj', 'Kulaura', 'Langla', 'Prithimpasha', 'Rauthgaon', 'Sharifpur', 'Tilagaon'],
+                    'Moulvibazar Sadar': ['Akhailkura', 'Amura', 'Chandnighat', 'Ekatuna', 'Giasnagar', 'Khalilpur', 'Manumukh', 'Mostafapur', 'Moulvibazar', 'Nazirabad', 'Shamshernagar', 'Sreemangal'],
+                    'Rajnagar': ['Fatehpur', 'Kamarchak', 'Munshibazar', 'Panchgram', 'Rajnagar', 'Satgram', 'Tengra'],
+                    'Sreemangal': ['Ashidron', 'Bharaura', 'Dhalai', 'Kalapur', 'Kalighat', 'Mirzapur', 'Rajghat', 'Satgram', 'Singerbil', 'Sreemangal']
+                }
+            },
+            'munshiganj': {
+                upozilas: {
+                    'Gazaria': ['Baushia', 'Gazaria', 'Gobindapur', 'Hasnabad', 'Hosendi', 'Mahakali', 'Rasulpur'],
+                    'Lohajang': ['Babupara', 'Bhagyakul', 'Gouragonj', 'Haldia', 'Kola Haridia', 'Korhati', 'Lohajang', 'Medini Mandal'],
+                    'Munshiganj Sadar': ['Baghpara', 'Char Kewar', 'Hashara', 'Kathakhali', 'Laukhola', 'Mollakandi', 'Rampal', 'Rikabibazar', 'Shilokhola', 'Sreenagar'],
+                    'Sirajdikhan': ['Basail', 'Char Vadra', 'Char Nagarkanda', 'Ichapur', 'Kedarpur', 'Kola', 'Malkhaniagar', 'Rarikhal', 'Shekher Nagar', 'Sirajdikhan'],
+                    'Sreenagar': ['Baghra', 'Bhaggyakul', 'Char Kewai', 'Hashara', 'Kolapara', 'Kumarbhog', 'Maijpara', 'Rarikhal', 'Sreenagar', 'Vaggyakul'],
+                    'Tongibari': ['Abdullapur', 'Autarsiddhir', 'Bajrajogini', 'Baligao', 'Betka', 'Char Singa', 'Dighirpar', 'Hasail', 'Panchsar', 'Pura', 'Tongibari']
+                }
+            },
+            'mymensingh': {
+                upozilas: {
+                    'Bhaluka': ['Bhaluka', 'Birampur', 'Chala', 'Dash Chara', 'Gazipur', 'Ghagra', 'Harukandi', 'Rajib Pur', 'Sirajpur'],
+                    'Dhobaura': ['Bhabanipur', 'Dhobaura', 'Enayetpur', 'Kachua', 'Kamarupa', 'Konchobari', 'Patuli'],
+                    'Fulbaria': ['Bhabkhali', 'Dadpur', 'Dhanikhola', 'Fulbaria', 'Tarakanda'],
+                    'Gaffargaon': ['Bangshipur', 'Betgari', 'Dhalapara', 'Gaffargaon', 'Josora', 'Niguari', 'Rajendrapur', 'Tangabo', 'Usthi'],
+                    'Gauripur': ['Buddheshwar', 'Durgapur', 'Gauripur', 'Jatia', 'Ramgopalpur', 'Rupapur'],
+                    'Haluaghat': ['Chakua', 'Dhurail', 'Gazirnagar', 'Haluaghat', 'Jiurakona', 'Nunkola', 'Panishwar', 'Sakuai'],
+                    'Ishwarganj': ['Atapur', 'Bhabanipur', 'Ishwarganj', 'Maizkhapan', 'Rajibpur', 'Sohagi', 'Tarundia'],
+                    'Muktagacha': ['Amirabari', 'Balipara', 'Habirbari', 'Joykalash', 'Muktagacha', 'Raghunathpur', 'Rampur'],
+                    'Mymensingh Sadar': ['Aqua', 'Austadhar', 'Bhabkhali', 'Bororchar', 'Boyra', 'Char Ishwardia', 'Char Nilaxmia', 'Dapunia', 'Ghagra', 'Khagdahar', 'Kushtia', 'Paranganj', 'Sirta'],
+                    'Nandail': ['Achintapur', 'Bhabanipur', 'Chandipasha', 'Joyka', 'Krishnapur', 'Nandail', 'Rajendrapur', 'Sherpur'],
+                    'Phulpur': ['Bhagat', 'Char Nilaxmia', 'Hatibandha', 'Phulpur', 'Rajendrapur'],
+                    'Tarakanda': ['Bailor', 'Habirbari', 'Hatibandha', 'Madhla', 'Suprakandi', 'Tarakanda'],
+                    'Trishal': ['Amtola', 'Balipara', 'Bhairabi', 'Danapatuli', 'Dhanikhola', 'Kewatpur', 'Madhainagar', 'Noagaon', 'Ramkrishnapur', 'Trishal', 'Vugpur']
+                }
+            },
+            'naogaon': {
+                upozilas: {
+                    'Atrai': ['Ahsangonj', 'Atrai', 'Balia', 'Bhikhampur', 'Dibar', 'Gunadhar', 'Kalikapur', 'Vhikhampur'],
+                    'Badalgachhi': ['Arjunpur', 'Badalgachhi', 'Bal Rampur', 'Bhatra', 'Kalikapur', 'Matindor', 'Paikor'],
+                    'Dhamoirhat': ['Agrabad', 'Alokdihi', 'Chhota Hagla', 'Dhamairhat', 'Jibanpur', 'Ismailpur', 'Kacharipara', 'Mahimaganj', 'Meghauli', 'Patcharghara', 'Sholmari', 'Suchan'],
+                    'Manda': ['Balihar', 'Birganj', 'Gopalnagar', 'Hapalbar', 'Kshirail', 'Manda', 'Prasadpur', 'Singra', 'Sultanganj', 'Tetulia'],
+                    'Mohadevpur': ['Babukhan', 'Bhadraghat', 'Cheragpur', 'Dayarampur', 'Hapania', 'Kasba', 'Khalisha Chapra', 'Mahadevpur', 'Mohanpur', 'Paharpur', 'Patnitala', 'Vatra'],
+                    'Naogaon Sadar': ['Baktiarpur', 'Balihar', 'Barshail', 'Boalia', 'Chandipur', 'Dubalhati', 'Hapania', 'Hashaighari', 'Kirtipur', 'Sailgachhi', 'Shikarpur', 'Tilakpur'],
+                    'Niamatpur': ['Aadhuriya', 'Alompur', 'Bhadraghat', 'Diara Basunia', 'Enayetpur', 'Kachomachi', 'Maizbazar', 'Niyamatpur', 'Patnitala'],
+                    'Patnitala': ['Aolai', 'Kazirhat', 'Madhainagar', 'Niamatpur', 'Nitpur', 'Panguria', 'Patnitala', 'Sarkaria'],
+                    'Porsha': ['Ghasnagar', 'Goragram', 'Nowdapara', 'Porsha', 'Rushkuleah', 'Tulshiganj'],
+                    'Raninagar': ['Bahaleswara', 'Boromasumdia', 'Deopara', 'Kalam', 'Khetupara', 'Motindor', 'Pachbibi', 'Raninagar', 'Uttaragram'],
+                    'Sapahar': ['Borghoria', 'Fatehpur', 'Gona', 'Mirganj', 'Parsendpur', 'Patai', 'Sapahar', 'Sreepur', 'Takoa']
+                }
+            },
+            'narail': {
+                upozilas: {
+                    'Kalia': ['Babra Hasla', 'Purulia', 'Hamidpur', 'Mauli', 'Salamabad', 'Khasial', 'Joynagar', 'Kalabaria', 'Baioshona', 'Pahardanga', 'Perali', 'Chanchuri', 'Boronal Eliasabad', 'Panchgram'],
+                    'Lohagara': ['Naldi', 'Lahuria', 'Shalnagar', 'Noagram', 'Lakshmipasha', 'Joypur', 'Lohagara', 'Dighalia', 'Mallikpur', 'Kotakol', 'Itna', 'Kashipur'],
+                    'Narail Sadar': ['Maijpara', 'Hobkhali', 'Chandiborpur', 'Auria', 'Shahabad', 'Tularampur', 'Sheikhati', 'Kalora', 'Singasholpur', 'Bhadrabila', 'Banshgram', 'Bisali', 'Mulia']
+                }
+            },
+            'narayanganj': {
+                upozilas: {
+                    'Araihazar': ['Araihazar', 'Baraid', 'Brahmandi', 'Shilmandi', 'Gosairhat', 'Jampur', 'Pirojpur'],
+                    'Bandar': ['Char Sdhanpur', 'Chashara', 'East Char Goaldi', 'Enayetnagar', 'Kalapaharia', 'Masdair', 'Siddhirganj', 'West Char Goaldi'],
+                    'Narayanganj Sadar': ['Alirtek', 'Bakshanagar', 'Fatulla', 'Idrakpur', 'Kalagachhia', 'Kutubpur'],
+                    'Rupganj': ['Bhulta', 'Bhogal Bazar', 'Daudpur', 'Golakandail', 'Jiranpur', 'Kanchpur', 'Kayetpara', 'Murapara', 'Rupshi', 'Tarabo', 'Bhagyakul'],
+                    'Sonargaon': ['Baidyer Bazar', 'Hasara', 'Jampur', 'Kachua', 'Mograpara', 'Pirojpur', 'Sadipur', 'Saidpur', 'Shampur', 'Sonargaon']
+                }
+            },
+            'narsingdi': {
+                upozilas: {
+                    'Belabo': ['Belabo', 'Charshindur', 'Panchpukuria', 'Patuli', 'Sallabad'],
+                    'Monohardi': ['Char Nilaxmia', 'Danga', 'Amirganj', 'Haradhan', 'Hatirdia', 'Jhoynsahi', 'Kataboa', 'Monohardi', 'Paikara', 'Sadegati'],
+                    'Narsingdi Sadar': ['Alokbali', 'Amdia', 'Char Dighaldi', 'Chinishpur', 'Hajipur', 'Karimpur', 'Khathalia', 'Mahishasura', 'Meherpara', 'Nazarpur', 'Nuralapur', 'Paikarchar', 'Panchdona', 'Silmandi'],
+                    'Palash': ['Char Sadurpur', 'Char Sindhur', 'Charsindur', 'Ghorashal', 'Jinari', 'Palash', 'Panchpara', 'Tariail'],
+                    'Raipura': ['Bahadursadi', 'Hashnabd', 'Highashi', 'Joynogor', 'Mirzapur', 'Radhaganj', 'Raipura', 'Uttar Ghorashal'],
+                    'Shibpur': ['Ayubpur', 'Chanderkandi', 'Masimpur', 'Palas', 'Ramrail', 'Shibpur']
+                }
+            },
+            'natore': {
+                upozilas: {
+                    'Bagatipara': ['Bagatipara', 'Barahorispur', 'Chaugram', 'Fanapara', 'Hatguri', 'Paikpara', 'Subhasgram'],
+                    'Baraigram': ['Baraigram', 'Chandai', 'Gopalpur', 'Joari', 'Majgaon', 'Nagor', 'Zonail'],
+                    'Gurudaspur': ['Biaghat', 'Chapila', 'Dharabarisha', 'Khubjipurupur', 'Moshindha', 'Nazirpur'],
+                    'Lalpur': ['Arbab', 'Bilashbari', 'Chongdhupoil', 'Iswardi', 'Kadimchilan', 'Lalapur', 'Oalia'],
+                    'Naldanga': ['Arbab', 'Bhelabari', 'Chongdhupoil', 'Chhatardighi', 'Luxmipur Kholabaria', 'Naldanga'],
+                    'Natore Sadar': ['Bara Horispur', 'Chhatni', 'Dighapatia', 'Halsa', 'Kaphuria', 'Lukshmipur Kholabaria', 'Tebaria'],
+                    'Singra': ['Chamari', 'Chaugram', 'Chhatardighi', 'Dahia', 'Hatiandaha', 'Italy', 'Kalam', 'Lalor', 'Ramananda Khajura', 'Sherkole', 'Sukash', 'Tajpur']
+                }
+            },
+            'netrokona': {
+                upozilas: {
+                    'Atpara': ['Atpara', 'Banijgaon', 'Bishwanathpur', 'Deokhola', 'Ghagra', 'Lakshmipur', 'Sukhari'],
+                    'Barhatta': ['Balijhuri', 'Barhatta', 'Chandgram', 'Gabragati', 'Nayabil', 'Raypur', 'Suair'],
+                    'Durgapur': ['Birampur', 'Durgapur', 'Kullaghat', 'Lengura', 'Singdha', 'Susung', 'Teligati'],
+                    'Kalmakanda': ['Asma', 'Chollisha', 'Gohaliabandha', 'Kalmakanda', 'Kandiura', 'Magura', 'Raniganj', 'Raypur'],
+                    'Kendua': ['Asula', 'Gurui', 'Haor Kendua', 'Kenda', 'Narayanpur', 'Nayamati', 'Roailbari', 'Rampasha', 'Sadullahpur', 'Silmandi', 'Sukhari', 'Tarangapur', 'Usmanpur'],
+                    'Khaliajuri': ['Dharmapasha', 'Hanumanghat', 'Khaliajuri', 'Muktinagar', 'Patanbaki', 'Saldha'],
+                    'Madan': ['Chandigarh', 'Gobjadia', 'Habirbari', 'Haor Chandra', 'Karnibari', 'Krishnapur', 'Madan', 'Rashidabad'],
+                    'Mohanganj': ['Bhalialki', 'Charbasta', 'Habirbari', 'Karaganpur', 'Mohanganj', 'Mondolkandi', 'Radhanagar'],
+                    'Netrokona Sadar': ['Asurkandi', 'Baushi', 'Bishwanathpur', 'Durgapur', 'Ghagra', 'Kailati', 'Kolmakan', 'Modonpur', 'Netrokona', 'Patakura', 'Ramkrishnour', 'Shomvhuganj'],
+                    'Purbadhala': ['Chandigarh', 'Dhalapara', 'Hatibandha', 'Jaria', 'Kailati', 'Kullaghat', 'Lengura', 'Modonpur', 'Patakura', 'Pogose', 'Purbadhala']
+                }
+            },
+            'nilphamari': {
+                upozilas: {
+                    'Dimla': ['Balapara', 'Dimla', 'Gayabari', 'Jhunagachh Chapani', 'Khoga Kharibari', 'Khalisha Chapani', 'Nautara', 'Paschim Chhatnay', 'Purba Chhatnay', 'Tepa Kharibari'],
+                    'Domar': ['Bamunia', 'Bhogdaburi', 'Boragari', 'Domar', 'Gomnati', 'Harinchara', 'Jorabari', 'Ketkibari', 'Panga Motukpur', 'Sonaray'],
+                    'Jaldhaka': ['Balagram', 'Dharmapal', 'Douabari', 'Golna', 'Golmunda', 'Kaimari', 'Kathali', 'Khutamara', 'Mirganj', 'Shaulmari', 'Shimulbari'],
+                    'Kishoreganj': ['Bahagili', 'Barabhita', 'Chandkhana', 'Garagram', 'Kishoreganj', 'Magura', 'Nitai', 'Ranisankail', 'Shaulmari'],
+                    'Nilphamari Sadar': ['Bangachaharishal', 'Boragari', 'Chapra Sarnjani', 'Domar Cantt', 'Hathibandha', 'Itakhola', 'Khadir Char', 'Nilphamari', 'Palasbari', 'Ramnagar', 'Sonmura', 'Uparkundia'],
+                    'Saidpur': ['Alamdanga', 'Bholchang', 'Chairgram', 'Dhamoirhat', 'Edarabad', 'Hasanpur', 'Jongo', 'Laxmitari', 'Palashbari', 'Ranisankail', 'Saidpur', 'Tohatpur']
+                }
+            },
+            'noakhali': {
+                upozilas: {
+                    'Begumganj': ['Alakpur', 'Begumganj', 'Chhatarpaia', 'Dudhlakshmipur', 'Eklaspur', 'Gopalpur', 'Jamidarhat', 'Kadirpara', 'Kutubpur', 'Mohammadpur', 'Nabipur', 'Rajganj', 'Rasulpur', 'Tamijarhat'],
+                    'Chatkhil': ['Char Jingle', 'Durgapur', 'Farhadabad', 'Gazra', 'Khilpara', 'Mohammadpur', 'Panchgachia', 'Raipur', 'Sahapur'],
+                    'Companiganj': ['Bashbaria', 'Char Bagaldi', 'Char Clark', 'Char Elahi', 'Char Monika', 'Companiganj', 'Mousalpur', 'Sirapur'],
+                    'Hatiya': ['Awlatpur', 'Char King', 'Char Ukra', 'Harni', 'Hatiya', 'Jhalia', 'Nijhumdwip', 'Sudharam', 'Tamaraddi'],
+                    'Kabirhat': ['Amanullahpur', 'Char Bata', 'Char Goald', 'Kabirhat', 'Musapur', 'Sannyasirhat'],
+                    'Noakhali Sadar': ['Anderchar', 'Ashwadia', 'Ewazbalia', 'Kadir Hanif', 'Kaladaraf', 'Char Matua', 'Dadpur', 'Dharmapur', 'Niazpur', 'Noannai', 'Noakhali', 'Purba Char Matua', 'Binodpur'],
+                    'Senbagh': ['Bagichagaon', 'Charbata', 'Mohammadpur', 'Musapur', 'Raipur', 'Senbagh'],
+                    'Sonaimuri': ['Ambarnagar', 'Chhagalnaiya', 'Kadirpur', 'Nateshwar', 'Sonapur'],
+                    'Subarnachar': ['Char Bata', 'Char Clerk', 'Char Jubilee', 'Char Wapda']
+                }
+            },
+            'pabna': {
+                upozilas: {
+                    'Atgharia': ['Atghoria', 'Bhangura', 'Koikuri', 'Nazirganj', 'Singra', 'Tebaria'],
+                    'Bera': ['Bera', 'Dhulauri', 'Kachhua', 'Kanaikhali', 'Kashinathpur', 'Nakalia', 'Puran Bharenga'],
+                    'Bhangura': ['Banwarinagar', 'Bhangura', 'Dilpashar', 'Khanmarich', 'Parbhangura'],
+                    'Chatmohar': ['Bhadraghat', 'Chatmohar', 'Debottar', 'Krishnapur', 'Nawabpur', 'Parshulia'],
+                    'Faridpur': ['Faridpur', 'Gopalpur', 'Haturbaria', 'Salapur', 'Sathia'],
+                    'Ishwardi': ['Bilchalan', 'Chaduhali', 'Dhapari', 'Ishwardi', 'Muladuli', 'Oalia', 'Pakshi', 'Rajapur', 'Salanga', 'Santhia'],
+                    'Pabna Sadar': ['Ataikula', 'Bharara', 'Dogachi', 'Gohaliabazar', 'Hemayetpur', 'Maligachha', 'Pabna Sadar', 'Sagarkandi', 'Shalgaria', 'Shantahar'],
+                    'Santhia': ['Bharara', 'Dapunia', 'Dhalahar', 'Dogachi', 'Ghurka', 'Harukandi', 'Haturbaria', 'Pakuria', 'Santhia'],
+                    'Sujanagar': ['Ahammadpur', 'Debottar', 'Dulai', 'Gopalpur', 'Manikhat', 'Sagarkandi', 'Savar', 'Sujanagar']
+                }
+            },
+            'panchagarh': {
+                upozilas: {
+                    'Atwari': ['Alowakhowa', 'Balarampur', 'Dhamor', 'Mirzapur', 'Radhanagar', 'Toria'],
+                    'Boda': ['Benghari Banagram', 'Boda', 'Boroshoshi', 'Chandanbari', 'Jholaishal Shiri', 'Kajoldighi Kaligonj', 'Marea Bamonhat', 'Moidan Dighi', 'Pachpir', 'Sakoa'],
+                    'Debiganj': ['Chengthi Hazradanga', 'Chilahati', 'Dandopal', 'Debiduba', 'Debiganj', 'Pamuli', 'Shaldanga', 'Sonahar Mollikadaha', 'Sundardighi', 'Tepriganj'],
+                    'Panchagarh Sadar': ['Amarkhana', 'Chaklahat', 'Dhakkamara', 'Garinabari', 'Hafizabad', 'Haribhasa', 'Kamat Kajal Dighi', 'Magura', 'Panchagarh Sadar', 'Satmara'],
+                    'Tetulia': ['Banglabandha', 'Bhajanpur', 'Buraburi', 'Devnagar', 'Shalbahan', 'Tetulia', 'Tirnaihat']
+                }
+            },
+            'patuakhali': {
+                upozilas: {
+                    'Bauphal': ['Badarpur', 'Baliatali', 'Bauphshal', 'Bidananda Swarupkathi', 'Daspara', 'Fatefur', 'Keshobpur', 'Najirpur', 'Rampura', 'Tiakhali'],
+                    'Dashmina': ['Badlakathi', 'Char Montaz', 'Dashmina', 'Shukla'],
+                    'Dumki': ['Angaria', 'Labukhali', 'Muradia', 'Pangasia', 'Sreerampur'],
+                    'Galachipa': ['Bacemanikhola', 'Chiknikandi', 'Dakua', 'Galachipa', 'Gowrichanna', 'Panpatti', 'Rathaulia', 'Shankarpur', 'Sonatala'],
+                    'Kalapara': ['Balipara', 'Chawla', 'Dhulghori', 'Kalapara', 'Latachapli', 'Maachpara', 'Mishipara', 'Nilganj', 'Tiakhali'],
+                    'Mirzaganj': ['Amragachia', 'Deuli Subidkhali', 'Kakrabunia', 'Madhabkhali', 'Majidbaria', 'Mirzaganj'],
+                    'Patuakhali Sadar': ['Auliapur', 'Badarpur', 'Boro Bighai', 'Choto Bighai', 'Itbaria', 'Jainkathi', 'Kalikapur', 'Kamalapur', 'Laukathi', 'Lohalia', 'Madarbunia', 'Marichbunia'],
+                    'Rangabali': ['Char Montaz', 'Charpata', 'Chhoto Baishdia', 'Ganga Sagar', 'Rangabali']
+                }
+            },
+            'pirojpur': {
+                upozilas: {
+                    'Bhandaria': ['Vitabariya', 'River Mula-Sialkathi', 'Telikhala', 'Eqri', 'Chase', 'Bhandaria', 'Gauripur'],
+                    'Indurkani': ['Balladia', 'Sohagadal', 'Nondescript', 'Atgharkariana', 'Zalabari', 'Biharii', 'Guarakha', 'All the time', 'Gourd', 'Sarengkathi'],
+                    'Kawkhali': ['Dhanisafa', 'Kawkhali', 'Sana', 'Raghunathpur', 'Shyampur'],
+                    'Mathbaria': ['Amkhola', 'Armanitola', 'Balidhara', 'Betmor Rajapara', 'Daudkhali', 'Golkhali', 'Hallelujah', 'Mathbaria', 'Mirukhali', 'Shapleja', 'Tikika'],
+                    'Nesarabad': ['Balladia', 'Sohagadal', 'Nondescript', 'Atgharkariana', 'Zalabari', 'Biharii', 'Guarakha', 'All the time', 'Gourd', 'Sarengkathi'],
+                    'Nazirpur': ['Fatigue', 'Malikhali', 'Deolbari', 'Long', 'Shakharikathi', 'Nazirpur', 'Okhmatia', 'Sriramakati', 'Callarovaniya'],
+                    'Pirojpur Sadar': ['Sikder Mallick', 'Kadamtala', 'Durgapur', 'Kanakkhali', 'Tona', 'Shariktola', 'Shankar Pasha']
+                }
+            },
+            'rajbari': {
+                upozilas: {
+                    'Baliakandi': ['Baliakandi', 'Borat', 'Dayarampur', 'Habashpur', 'Jamalpur', 'Masudpur', 'Narua', 'Orakandi', 'Rathdia', 'Shyamsuddi', 'Tahirpur'],
+                    'Goalanda': ['Goalanda', 'Harirampur', 'Madhyapara', 'Rajbari'],
+                    'Kalukhali': ['Boalia', 'Kalukhali', 'Mandaria', 'Prasadpur', 'Rahmatpur', 'Sarsha'],
+                    'Pangsha': ['Debhata', 'Haridia', 'Harisdi', 'Pangsha', 'Ramkol', 'Bangali'],
+                    'Rajbari Sadar': ['Alipur', 'Banibaha', 'Barat', 'Basantapur', 'Chandani', 'Dadshi', 'Khankhanapur', 'Khanganj', 'Mizanpur', 'Mulghar', 'Panchuria', 'Ramkantapur', 'Shahid Wahabpur', 'Sultanpur']
+                }
+            },
+
+
+            'rajshahi': {
+                upozilas: {
+                    'Bagha': ['Arani', 'Bajubagha', 'Bausa', 'Gargari', 'Manigram', 'Pakuria'],
+                    'Bagmara': ['Aichpara', 'Barabihanoli', 'Basupara', 'Dwippur', 'Goalkandi', 'Gobinda Para', 'Ganipur', 'Hamirkutsha', 'Jhikra', 'Jogipara', 'Maria', 'Nordas', 'Sreepur', 'Sonadanga', 'Subhadanga', 'Kachari-koalipara'],
+                    'Charghat': ['Bhaya Laxmipur', 'Charghat', 'Yousufpur', 'Nimpara', 'Salua', 'Sardah'],
+                    'Durgapur': ['Deluabari', 'Pananagar', 'Jhaluka', 'Joynagar', 'Kismatgankoir', 'Maria', 'Nowpara'],
+                    'Godagari': ['Basudebpur', 'Char Ashariadaha', 'Dewpara', 'Godagari', 'Gogram', 'Matikata', 'Mohanpur', 'Pakri', 'Rishikul'],
+                    'Mohanpur': ['Bachshimuil', 'Dhurail', 'Ghasigram', 'Jahanabad', 'Mougachhi', 'Royghati'],
+                    'Paba': ['Baragachhi', 'Damkur', 'Darshan Para', 'Haragram', 'Harian', 'Haripur', 'Hujuri Para', 'Parila'],
+                    'Puthia': ['Baneshwar', 'Belpukuria', 'Bhalukgachhi', 'Jewpara', 'Puthia', 'Silmaria'],
+                    'Tanore': ['Badhair', 'Kalma', 'Kamargaon', 'Pachandar', 'Soronjai', 'Talonda', 'Chanduria']
+                }
+            },
+            'rangamati': {
+                upozilas: {
+                    'Bagaichhari': ['Sajek', 'Sharoyatali', 'Marisha', 'Baghaichhori', 'Khedarmara', 'Rupokari', 'Angaramanik', 'Saring', 'Mainimukh'],
+                    'Barkal': ['Barakal', 'Aimachhara', 'Bushanchhara', 'Boroharina', 'Subalong'],
+                    'Belaichhari': ['Farua', 'Belaichhari', 'Kengrachhari'],
+                    'Juraichhari': ['Banjogichhara', 'Dumdumia', 'Juraichhari', 'Moidong'],
+                    'Kaptai': ['Wagga', 'Chandraghona', 'Chitmorom', 'Kaptai', 'Raikhali'],
+                    'Kawkhali': ['Betbunia', 'Ghagra', 'Fatikchhari', 'Kawkhali'],
+                    'Langadu': ['Aimachhara', 'Bogachattar', 'Gulshakhali', 'Islampur', 'Kalapakujja', 'Langadu', 'Maeinimukh'],
+                    'Naniarchar': ['Bazalia', 'Burighat', 'Ghilachhari', 'Naniarchar'],
+                    'Rajasthali': ['Bangalkata', 'Gaindya', 'Rajasthali'],
+                    'Rangamati Sadar': ['Balukhali', 'Bandukbhanga', 'Jibtali', 'Kaptai', 'Mogalchhari', 'Sapchhari']
+                }
+            },
+            'rangpur': {
+                upozilas: {
+                    'Badarganj': ['Bishnupur', 'Damodarpur', 'Gopalpur', 'Gopinathpur', 'Kutubpur', 'Lohanipara', 'Madhupur', 'Radhanagar', 'Ramnathpur', 'Kalupara'],
+                    'Gangachara': ['Alambiditor', 'Barabil', 'Betgari', 'Gangachara', 'Gajaghanta', 'Kholeya', 'Kolkond', 'Laxmitari', 'Maraneya', 'Nohali'],
+                    'Kaunia': ['Haragachh', 'Kaunia Balapara', 'Kursha', 'Sarai', 'Shahidbagh', 'Tepamadhupur'],
+                    'Mithapukur': ['Baluamasimpur', 'Barabala', 'Bara Hazratpur', 'Balarhat', 'Bhangni', 'Chengmari', 'Durgapur', 'Imadpur', 'Gopalpur', 'Kafrikhal', 'Khoragachh', 'Latibpur', 'Malonpur', 'Mirzapur', 'Moyenpur', 'Pairaband', 'Ranipukur'],
+                    'Pirgacha': ['Annadannagar', 'Chhaola', 'Itakumari', 'Koikuri', 'Kalyani', 'Kandi', 'Parul', 'Pirgachha', 'Tambulpur'],
+                    'Pirganj': ['Bara Alampur', 'Bara Dargah', 'Bhendabari', 'Chaitrakal', 'Chatra', 'Kabilpur', 'Kumedpur', 'Madankhali', 'Mithipur', 'Panchgachhi', 'Pirganj', 'Roypur', 'Ramnathpur', 'Shanerhat', 'Tukuria'],
+                    'Rangpur Sadar': ['Chandanpat', 'Darshana', 'Haridebpur', 'Mominpur', 'Parswuram', 'Rajendrapur', 'Sadyapushkarini', 'Satgara', 'Tampat', 'Tapodhon', 'Uttam'],
+                    'Taraganj': ['Alampur', 'Ikarchali', 'Hariarkuthi', 'Kursha', 'Sayar']
+                }
+            },
+            'satkhira': {
+                upozilas: {
+                    'Assasuni': ['Anulia', 'Assasuni', 'Baradal', 'Badhhata', 'Dargahpur', 'Khajra', 'Kulla', 'Pratapnagar', 'Sobhnali', 'Sreeula', 'Kadakati'],
+                    'Debhata': ['Debhata', 'Kulia', 'Noapara', 'Parulia', 'Sakhipur'],
+                    'Kalaroa': ['Chandanpur', 'Deara', 'Koyla', 'Helatola', 'Jalalabad', 'Joynagar', 'Jugikhali', 'Kerakati', 'Keralkata', 'Kushadanga', 'Langoljhara', 'Sonabaria'],
+                    'Kaliganj': ['Bharasimla', 'Bishnupur', 'Champaphul', 'Dakshinsreepur', 'Dhalbaria', 'Krishnanagar', 'Kushlia', 'Mathureshpur', 'Motala', 'Nalta', 'Ratanpur', 'Tarali'],
+                    'Satkhira Sadar': ['Alipur', 'Agordari', 'Bekari', 'Bolli', 'Banshdaha', 'Bhomra', 'Bramharajpur', 'Fingri', 'Dhulihar', 'Ghona', 'Jhaudanga', 'Kuskhali', 'Labsa', 'Shibpur'],
+                    'Shyamnagar': ['Atulia', 'Surulia', 'Burigoalini', 'Gabura', 'Ishwaripur', 'Koikhali', 'Kashimari', 'Munshiganj', 'Nurnagar', 'Padmapukur', 'Ramjannagar', 'Shyamnagar'],
+                    'Tala': ['Dhandia', 'Islamkati', 'Jalalpur', 'Khalilnagar', 'Khaliskhali', 'Khesra', 'Kumira', 'Magura', 'Nagarghata', 'Sarulia', 'Tala', 'Tentulia']
+                }
+            },
+            'shariatpur': {
+                upozilas: {
+                    'Bhedarganj': ['Mahisar', 'Sakhipur', 'Char Kumarirchar', 'Char Bhaga', 'D.M. Khali', 'Dakshin Tarabunia', 'Uttar Tarabunia', 'Kachikata', 'Charsensus', 'Chhaygaon', 'Arshinagar', 'Ramvadrapur', 'Narayanpur'],
+                    'Damudya': ['Sidya', 'Purba Damudya', 'Koneshwar', 'Darul Aman', 'Dhankathi', 'Shidhalkura', 'Islampur'],
+                    'Gosairhat': ['Idilpur', 'Kodalpur', 'Gariberchar', 'Samantsar', 'Nagerpara', 'Nalmuri', 'Gosairhat', 'Kuchai Patti'],
+                    'Naria': ['Kedarpur', 'Dingamanik', 'Gorishar', 'Charatra', 'Naopara', 'Moktar Char', 'Fatejongpur', 'Bhumkhara', 'Chamta', 'Bijhari', 'Nassation', 'Bhajeshwar', 'Japsa', 'Rajnagar'],
+                    'Shariatpur Sadar': ['Binodpur', 'Tulasar', 'Palong', 'Domsar', 'Rudrakar', 'Angaria', 'Chitalia', 'Mahmudpur', 'Chikandi', 'Chandrapur', 'Shaulpara'],
+                    'Zanjira': ['Mulna', 'Bara Kandi', 'Bilas Pur', 'Kunder Char', 'Palor Char', 'Purba Naodoba', 'Naodoba', 'Sener Char', 'BK Nagar', 'Borogopalpur', 'Joynagar', 'Zajira']
+                }
+            },
+            'sherpur': {
+                upozilas: {
+                    'Jhenaigati': ['Dhansail', 'Gauripur', 'Hatibandha', 'Malijhikanda', 'Jhenaigati', 'Kangsa', 'Nalkura'],
+                    'Nakla': ['Baneshwardi', 'Chandrakona', 'Char Ashtadhar', 'Ganapaddi', 'Gourdwar', 'Nakla', 'Pathakata', 'Talki', 'Urpha'],
+                    'Nalitabari': ['Baghber', 'Jogania', 'Kakrakandi', 'Marichpuran', 'Nalitabari', 'Poragaon', 'Nunni', 'Nayabil', 'Rajnagar', 'Ramchandrakura', 'Rupnarayankura', 'Kalaspar'],
+                    'Sherpur Sadar': ['Bajitkhila', 'Balyer Char', 'Bhatsala', 'Betmari Ghughurakandi', 'Char Mucharia', 'Char Pakshimari', 'Char Sherpur', 'Dhala', 'Gazir Khamar', 'Kamarer Char', 'Kamaria', 'Laxmanpur', 'Pakuria', 'Rauha Betmari'],
+                    'Sreebardi': ['Bhelua', 'Garjaripa', 'Gosaipur', 'Kakilakura', 'Kharia Kazir Char', 'Kurikahania', 'Rani Shimul', 'Singa Baruna', 'Sreebardi', 'Tantihati']
+                }
+            },
+            'sirajganj': {
+                upozilas: {
+                    'Belkuchi': ['Baradhul', 'Belkuchi', 'Bhangabari', 'Daulatpur', 'Dhakuriabera', 'Rajapur'],
+                    'Chauhali': ['Ghorjan', 'Umarpur', 'Sadiachandpur', 'Sthal', 'Khashkawlia', 'Khashpukuria', 'Baghutia'],
+                    'Kamarkhanda': ['Bhadraghat', 'Jamtair', 'Baol', 'Roydaulatpur'],
+                    'Kazipur': ['Chargirish', 'Chalitadanga', 'Gondhail', 'Kazipur', 'Khasrabari', 'Maijbari', 'Natuarpara', 'Nishchintapur', 'Sonamukhi', 'Subhagachha', 'Tekani', 'Moonsurnagar'],
+                    'Raiganj': ['Brahmagachh', 'Chandaikona', 'Dhamainagar', 'Dhangara', 'Dhubil', 'Ghurkha', 'Nalka', 'Pangashi', 'Sonakhara'],
+                    'Shahjadpur': ['Beltail', 'Gala', 'Garadaha', 'Jalalpur', 'Koijuri', 'Kayempur', 'Khukni', 'Narina', 'Porajona', 'Potajia', 'Rupabati', 'Habullah Nagar', 'Sonatani'],
+                    'Sirajganj Sadar': ['Bagbati', 'Bahuli', 'Kaliaharipur', 'Kawrakhola', 'Khoksabari', 'Mechhra', 'Ratankandi', 'Sardabad', 'Shialkol', 'Chhangachh'],
+                    'Tarash': ['Baruhas', 'Deshigram', 'Maidnagar', 'Magurabinod', 'Naogaon', 'Saguna', 'Talom', 'Tarash'],
+                    'Ullahpara': ['Bangala', 'Barahar', 'Bara Pangashi', 'Durganagar', 'Hati Kumrul', 'Mohanpur', 'Panchakroshi', 'Purnimagati', 'Ramkrishnapur', 'Salonga', 'Salap', 'Udunia', 'Ullapara']
+                }
+            },
+            'sunamganj': {
+                upozilas: {
+                    'Bishwamvarpur': ["Dhanpur", "Palash", "Bahadurpur", "Madhab Pur", "Bishwambarpur"],
+                    'Chhatak': ["Chhatak", "Gobindganj", "Kalaruka", "Khalishpur", "Noarai", "Paikurati", "Singchapair", "Bhatgaon", "Islampur", "Narsinghpur", "Chatiwan", "Chhoto Bazar", "Bholaganj"],
+                    'Derai': ["Derai", "Tahirpur", "Jagannathpur", "Dular Bazar", "Bhatipara", "Charan", "Fatehpur", "Kamargaon", "Rasulpur"],
+                    'Dharamapasha': ["Dharamapasha", "Joynagar", "Shakti Pur", "Modhopur", "Gachhua", "Surma"],
+                    'Dowarabazar': ["Dowarabazar", "Birendranagar", "Bishambarpur", "Dankhak", "Khalishpur", "Mangalkandi", "Manikpur", "Narsinghpur", "Laxmipur"],
+                    'Jagannathpur': ["Jagannathpur", "Syedpur Shaharpara", "Jaua Bazar", "Chilaura-Haulibari", "Dargapasha", "Manga", "Pailgaon", "Patli", "Raniganj"],
+                    'Jamalganj': ["Jamalganj", "Beheli", "Fenerbak", "Sachna Bazar", "Bishwambharpur"],
+                    'Madhyanagar': ["Madhyanagar"],
+                    'Shantiganj': ["Shantiganj"],
+                    'Sullah': ["Atgaon", "Bhatgaon", "Bordhansree", "Gaorgati"],
+                    'Sunamganj Sadar': ["Aptabnagar", "Gourarang", "Jahangirnagar", "Kathair", "Laxmansree", "Mohonpur", "Mollahpara", "Rangarchar", "Surma"],
+                    'Tahirpur': ["Badhaghat", "Balijuri", "Bangshikunda North", "Bangshikunda South", "Dakshin Sreepur", "Nijgouripur", "North Sreepur"]
+                }
+            },
+            'sylhet': {
+                upozilas: {
+                    'Balaganj': ['Balaganj', 'Boaljur', 'Buronga Bazar', 'Dayamir', 'Dewan Bazar', 'Goal Bazar', 'Omarpur', 'Osmanpur', 'Pashchim Gauripur', 'Purba Pawlanpur', 'Purba Gauripur', 'Sadipur', 'Tajpur', 'Pashchim Pawlanpur'],
+                    'Beanibazar': ['Alinagar', 'mollahpur', 'Charkhai', 'Dubag', 'Kurar Bazar', 'Lauta', 'Mathiura', 'Muria', 'Sheola', 'Tilpara'],
+                    'Bishwanath': ['Alankari', 'Bishwanath', 'Daulatpur', 'Deokalas', 'Dasghar', 'Khazanchi', 'Lama Kazi', 'Rampasha'],
+                    'Companiganj': ['Islampur Paschim', 'Ranikhali Uttar', 'Telikhal', 'Islampur Purba', 'Ichhakalash', 'Dakshin Ranikhai'],
+                    'Dakshin Surma': ['Baraikandi', 'Daudpur', 'Jalalpur', 'Kuchai', 'Lal Bazar', 'Mogal Bazar', 'Mollargaon', 'Silam', 'Tetli'],
+                    'Fenchuganj': ['Fenchuganj', 'Gilachhara', 'Maijgaon'],
+                    'Golapganj': ['Paschim Amura', 'Bagha', 'Bhadeshwar', 'Badhubari', 'Dhaka Dakshin', 'Fulbari', 'Golabganj', 'Laxmi Pasha', 'Sharifganj', 'Lakshanaband', 'Uttar Bade Pasha'],
+                    'Gowainghat': ['Alirgaon', 'Fatehpur', 'Lengura', 'Nandirgaon', 'Paschim Jaflong', 'Purba Jaflong', 'Rustampur', 'Towakul'],
+                    'Jaintiapur': ['Charikata', 'Darbasta', 'Fatehpur', 'Jointapur', 'Nijpat', 'Chikangul'],
+                    'Kanaighat': ['Bara Chatul', 'Dakshin Banigram', 'Jhingabari', 'Kanaighat', 'Paschim Laxmi Prasad', 'Shatbank', 'Purba Laxmi Prasad', 'Purba Dighirpar', 'Rajaganj'],
+                    'Osmani Nagar': [],
+                    'Sylhet Sadar': ['Hatkhola', 'Jalalabad', 'Kandigaon', 'Khadimnagar', 'Khadim Para', 'Mogalgaon', 'Tuker Bazar', 'Tultikar'],
+                    'Zakiganj': ['Barahal', 'Bara Thakuri', 'Birasree', 'Kas Kanakpur', 'Kajalshah', 'Kholachhara', 'Manikpur', 'Sultanpur', 'Zakiganj']
+                }
+            },
+            'tangail': {
+                upozilas: {
+                    'Basail': [],
+                    'Bhuapur': [],
+                    'Delduar': [],
+                    'Dhanbari': [],
+                    'Ghatail': [],
+                    'Gopalpur': [],
+                    'Kalihati': [],
+                    'Madhupur': [],
+                    'Mirzapur': [],
+                    'Nagarpur': [],
+                    'Sakhipur': [],
+                    'Tangail Sadar': []
+                }
+            },
+            'thakurgaon': {
+                upozilas: {
+                    'Baliadangi': ['Amjankhore', 'Barabari', 'Barapalashbari', 'Bhanor', 'Charol', 'Dhantola', 'Duosuo', 'Paria'],
+                    'Haripur': ['Amgaon', 'Bakua', 'Bhaturia', 'Dangipara', 'Gedura', 'Haripur'],
+                    'Pirganj': ['Beerchuna', 'Bhomradaha', 'Daulatpur', 'Hajipur', 'Jabarhat', 'Khangaon', 'Kosharaniganj', 'Pirganj', 'Sayedpur', 'Sengaon'],
+                    'Ranisankail': ['Bachor', 'Dharmagarh', 'Hossaingaon', 'Kashipur', 'Lehemba', 'Nekmarad', 'Nanduar', 'Rator'],
+                    'Thakurgaon Sadar': ['Akacha', 'Akhanagar', 'Auliapur', 'Begunbari', 'Balia', 'Baragaon', 'Chilarang', 'Debipur', 'Goreya', 'Jagannathpur', 'Jamalpur', 'Mohammadpur', 'Nargun', 'Rahimanpur', 'Roypur', 'Rajagaon', 'Ruheea', 'Salandar', 'Sukanpukuri']
+                }
+            },
+        };
+        
+        // Function to update upozila options based on district selection for present address
+        document.getElementById('district').addEventListener('change', function() {
+            const district = this.value;
+            const upozilaSelect = document.getElementById('upozila');
+            const unionSelect = document.getElementById('union');
+
+            // Clear current options
+            upozilaSelect.innerHTML = '<option value="y"> </option>';
+            unionSelect.innerHTML = '<option value="z"> </option>';
+
+            if (data[district]) {
+                // Populate upozila options
+                Object.keys(data[district].upozilas).forEach(upozila => {
+                    const option = document.createElement('option');
+                    option.value = upozila;
+                    option.textContent = upozila;
+                    upozilaSelect.appendChild(option);
+                });
+            }
+        });
+
+        // Function to update union options based on upozila selection for present address
+        document.getElementById('upozila').addEventListener('change', function() {
+            const district = document.getElementById('district').value;
+            const upozila = this.value;
+            const unionSelect = document.getElementById('union');
+
+            // Clear current options
+            unionSelect.innerHTML = '<option value="z"> </option>';
+
+            if (district && upozila && data[district] && data[district].upozilas[upozila]) {
+                // Populate union options
+                data[district].upozilas[upozila].forEach(union => {
+                    const option = document.createElement('option');
+                    option.value = union;
+                    option.textContent = union;
+                    unionSelect.appendChild(option);
+                });
+            }
+        });
+
+        // Function to update upozila options based on district selection for permanent address
+        document.getElementById('permanent_district').addEventListener('change', function() {
+            const district = this.value;
+            const upozilaSelect = document.getElementById('permanent_upozila');
+            const unionSelect = document.getElementById('permanent_union');
+
+            // Clear current options
+            upozilaSelect.innerHTML = '<option value="y"> </option>';
+            unionSelect.innerHTML = '<option value="z"> </option>';
+
+            if (data[district]) {
+                // Populate upozila options
+                Object.keys(data[district].upozilas).forEach(upozila => {
+                    const option = document.createElement('option');
+                    option.value = upozila;
+                    option.textContent = upozila;
+                    upozilaSelect.appendChild(option);
+                });
+            }
+        });
+
+        // Function to update union options based on upozila selection for permanent address
+        document.getElementById('permanent_upozila').addEventListener('change', function() {
+            const district = document.getElementById('permanent_district').value;
+            const upozila = this.value;
+            const unionSelect = document.getElementById('permanent_union');
+
+            // Clear current options
+            unionSelect.innerHTML = '<option value="z"> </option>';
+
+            if (district && upozila && data[district] && data[district].upozilas[upozila]) {
+                // Populate union options
+                data[district].upozilas[upozila].forEach(union => {
+                    const option = document.createElement('option');
+                    option.value = union;
+                    option.textContent = union;
+                    unionSelect.appendChild(option);
+                });
+            }
+        });
+
+        document.getElementById('sameAddress').addEventListener('change', function() {
+            if (this.checked) {
+                document.getElementById('district').value = document.getElementById('permanent_district').value;
+                document.getElementById('upozila').innerHTML = document.getElementById('permanent_upozila').innerHTML;
+                document.getElementById('upozila').value = document.getElementById('permanent_upozila').value;
+                document.getElementById('union').innerHTML = document.getElementById('permanent_union').innerHTML;
+                document.getElementById('union').value = document.getElementById('permanent_union').value;
+                document.getElementById('village').value = document.getElementById('permanent_village').value;
+                document.getElementById('location').value = document.getElementById('permanent_location').value;
+            }
+        });
+
+        // date/month/year formatter
+        flatpickr("#dob", {
+            dateFormat: "d/m/Y",
+            locale: "en" // Optional: set locale for translations
+        });
+
+        // Count words in comments
+        document.getElementById('comments').addEventListener('input', function () {
+            const maxWords = 100;
+            const words = this.value.trim().split(/\s+/).filter(word => word.length > 0);
+            const wordCount = words.length;
+
+            if (wordCount > maxWords) {
+                this.value = words.slice(0, maxWords).join(' ');
+            }
+
+            document.getElementById('wordCount').textContent = `${Math.min(wordCount, maxWords)}/${maxWords} words`;
+        });
     </script>
 </body>
 </html>
