@@ -671,9 +671,9 @@
                 
                         <tr>
                             <th>Contact Number: </th>
-                            <td><input class="table-input phone-input" type="tel" placeholder="Enter phone number" value="+880" pattern="[0-9]{5}-[0-9]{4}-[0-9]{4}" required></td>
-                            <td><input class="table-input phone-input" type="tel" placeholder="Enter phone number" value="+880" pattern="[0-9]{5}-[0-9]{4}-[0-9]{4}" required></td>
-                            <td><input class="table-input phone-input" type="tel" placeholder="Enter phone number" value="+880" pattern="[0-9]{5}-[0-9]{4}-[0-9]{4}" required></td>
+                            <td><input class="table-input phone-input" type="tel" placeholder="+88012-3456-7890" value="+880" required></td>
+                            <td><input class="table-input phone-input" type="tel" placeholder="+88012-3456-7890" value="+880" required></td>
+                            <td><input class="table-input phone-input" type="tel" placeholder="+88012-3456-7890" value="+880" required></td>
                         </tr>
                     </table>
                 </div>
@@ -1039,27 +1039,176 @@
         });
 
         // cell no. formatting
-        document.querySelectorAll('input[type="tel"]').forEach(function (input) {
-            input.addEventListener('input', function () {
-                // Preserve leading '+'
-                let value = input.value;
-                let cleaned = value.startsWith('+') ? '+' : '';
-                cleaned += value.replace(/[^0-9]/g, '');
 
-                // Limit to 13 digits after '+'
-                let digits = cleaned.replace('+', '');
-                if (digits.length > 13) {
-                    digits = digits.slice(0, 13);
-                }
+        (function () {
+        const PREFIX = '+880';           // locked prefix
+        const MAX_DIGITS = 13;          // total digits after '+' (880 + rest => 13)
+        const inputs = document.querySelectorAll('input[type="tel"].phone-input');
 
-                // Apply formatting (e.g., +88012-3456-7890)
-                if (digits.length === 13) {
-                    input.value = '+' + digits.slice(0, 3) + '-' + digits.slice(3, 7) + '-' + digits.slice(7, 11) + '-' + digits.slice(11);
-                } else {
-                    input.value = cleaned;
+        function onlyDigits(str) {
+            return str.replace(/\D/g, '');
+        }
+
+        // Format rule: +<first 5 digits>-<next 4>-<last 4>
+        // Example: digits = '8801234567890' -> +88012-3456-7890
+        function formatDigits(digits) {
+            if (!digits) return '';
+            if (digits.length <= 5) return '+' + digits;
+            if (digits.length <= 9) {
+            return '+' + digits.slice(0,5) + '-' + digits.slice(5);
+            }
+            return '+' + digits.slice(0,5) + '-' + digits.slice(5,9) + '-' + digits.slice(9);
+        }
+
+        // Count numeric characters (digits) up to a position in a string
+        function countDigitsUpTo(str, pos) {
+            const sub = str.slice(0, pos);
+            return (sub.match(/\d/g) || []).length;
+        }
+
+        // Find cursor index in formatted string that corresponds to having `digitCount` digits before cursor
+        function indexForDigitCount(formatted, digitCount) {
+            let count = 0;
+            for (let i = 0; i < formatted.length; i++) {
+            if (/\d/.test(formatted[i])) {
+                count++;
+                if (count === digitCount) {
+                // place caret just after this digit
+                return i + 1;
                 }
+            }
+            }
+            // if fewer digits than digitCount, put caret at end
+            return formatted.length;
+        }
+
+        function sanitizeAndFormat(rawValue) {
+            // ensure a leading '+' kept separately from digits
+            const hasPlus = rawValue.startsWith('+');
+            let digits = onlyDigits(rawValue);
+            // If user removed the '880' part, ensure digits start with 880
+            if (!digits.startsWith('880')) {
+            // If user typed something else, try to preserve trailing digits they typed after country code by appending
+            // but enforce country code at start
+            // Keep user-supplied digits but ensure '880' is the first three digits
+            // If digits already contain '880' later, we prefer it at start
+            digits = '880' + digits.replace(/^880/, '');
+            }
+            // Limit digits to MAX_DIGITS
+            if (digits.length > MAX_DIGITS) digits = digits.slice(0, MAX_DIGITS);
+            return digits;
+        }
+
+        inputs.forEach(input => {
+            // initialize value if empty or missing prefix
+            if (!input.value || !input.value.startsWith(PREFIX)) {
+            input.value = PREFIX;
+            }
+
+            // Prevent deleting prefix via backspace/delete or selection
+            input.addEventListener('keydown', function (e) {
+            const selStart = input.selectionStart;
+            const selEnd = input.selectionEnd;
+
+            // If selection includes prefix area, block altering keys that modify text
+            const prefixEnd = PREFIX.length; // e.g. '+880' length 4
+            const selectionTouchesPrefix = selStart < prefixEnd || selEnd <= prefixEnd;
+
+            const modifyingKeys = [
+                'Backspace', 'Delete', 'Cut', // 'Cut' for some browsers
+                'ArrowLeft', 'Home' // allow navigation but we'll prevent Home moving before prefix
+            ];
+
+            if ((e.key === 'Backspace' || e.key === 'Delete') && selectionTouchesPrefix) {
+                // disallow deletion inside/into the prefix
+                e.preventDefault();
+                // keep caret just after the prefix
+                setTimeout(() => input.setSelectionRange(prefixEnd, prefixEnd), 0);
+            }
+
+            // Disallow Home to move before prefix (so Home always puts caret at prefix end)
+            if (e.key === 'Home') {
+                e.preventDefault();
+                setTimeout(() => input.setSelectionRange(prefixEnd, prefixEnd), 0);
+            }
+
+            // Prevent ctrl/cmd+x (cut) if selection includes prefix area
+            if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'x' && selectionTouchesPrefix) {
+                e.preventDefault();
+            }
+            });
+
+            // Handle paste - sanitize and format
+            input.addEventListener('paste', function (ev) {
+            ev.preventDefault();
+            const text = (ev.clipboardData || window.clipboardData).getData('text') || '';
+            // count digits already in current value (after prefix)
+            const currentDigits = onlyDigits(input.value);
+            // append pasted digits (but ensure prefix remains)
+            const pastedDigits = onlyDigits(text);
+            let combined = currentDigits;
+            // If user selected a range, replace that selection's digits portion
+            const selStart = input.selectionStart;
+            const selEnd = input.selectionEnd;
+            // compute digit indexes for selection
+            const digitsBefore = countDigitsUpTo(input.value, selStart);
+            const digitsAfterSelection = countDigitsUpTo(input.value, selEnd);
+            // Replace digits in the selected range with pasted digits
+            const left = combined.slice(0, digitsBefore);
+            const right = combined.slice(digitsAfterSelection);
+            combined = left + pastedDigits + right;
+            // Ensure prefix and length
+            combined = sanitizeAndFormat(combined);
+            input.value = formatDigits(combined);
+            // position caret after the pasted digits
+            const newDigitPos = left.length + pastedDigits.length;
+            const newCaret = indexForDigitCount(input.value, newDigitPos);
+            setTimeout(() => input.setSelectionRange(newCaret, newCaret), 0);
+            });
+
+            // Input handler does main sanitize & reformat while preserving caret logically
+            input.addEventListener('input', function (e) {
+            const raw = input.value;
+            // store number of digits before caret so we can restore logical caret position
+            const oldCaret = input.selectionStart;
+            const digitsBeforeCaret = countDigitsUpTo(raw, oldCaret);
+
+            // Sanitize & ensure prefix '880' at start of digits
+            const digits = sanitizeAndFormat(raw);
+
+            // Format digits into desired display
+            const formatted = formatDigits(digits);
+
+            // Ensure the displayed string always starts with '+' (and prefix present)
+            if (!formatted.startsWith('+')) {
+                input.value = '+' + formatted;
+            } else {
+                input.value = formatted;
+            }
+
+            // compute new caret index that corresponds to same count of digits before caret
+            const newCaret = indexForDigitCount(input.value, digitsBeforeCaret);
+            setTimeout(() => {
+                input.setSelectionRange(newCaret, newCaret);
+            }, 0);
+            });
+
+            // On focus - if user clicks before prefix, move caret after prefix
+            input.addEventListener('focus', function () {
+            const prefixEnd = PREFIX.length;
+            if (input.selectionStart < prefixEnd) {
+                setTimeout(() => input.setSelectionRange(prefixEnd, prefixEnd), 0);
+            }
+            });
+
+            // optional: on blur ensure formatting is final (e.g., pad/validate)
+            input.addEventListener('blur', function () {
+            // final sanitize/format to maintain invariants
+            const digits = sanitizeAndFormat(input.value);
+            input.value = formatDigits(digits);
             });
         });
+        })();
 
         // Dynamic address selection
 
@@ -1228,7 +1377,7 @@
                     'Titas': ['Balarampur', 'Bitikandi', 'Jiarkandi', 'Jagatpur', 'Kalakandi', 'Karikandi', 'Majidpur', 'Narandia', 'Satani']
                 }
             },
-            
+
             'cox\'s bazar': {
                 upozilas: {
                     'Kutubdia': ['Ali Akbardeil', 'Baraghop', 'Dakshin Dhurung', 'Kaiyarbil', 'Lemsikhali', 'Uttar Dhurung'],
@@ -1951,4 +2100,3 @@
     </script>
 </body>
 </html>
-
