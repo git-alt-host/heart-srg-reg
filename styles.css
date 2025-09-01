@@ -518,13 +518,13 @@ input[type="radio"]:checked::after {
 }
 
 /* Phone number validation styling */
-.phone-input:invalid:not(:placeholder-shown) {
+/* .phone-input:invalid:not(:placeholder-shown) {
     background-color: #fde8e8;
 }
 
 .phone-input:valid:not(:placeholder-shown) {
     background-color: #e8f8f0;
-}
+} */
 
 .phone-input::-webkit-inner-spin-button,
 .phone-input::-webkit-outer-spin-button {
@@ -642,3 +642,4 @@ input[type="radio"]:checked::after {
 
 
 /* Primary color value: RGB: 0, 77, 161 (hex: #004DA1) */
+
